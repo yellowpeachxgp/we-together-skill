@@ -17,15 +17,17 @@
 - 确定环境参数采用“核心维度固定 + 自定义扩展”
 - 确定主存储采用 SQLite 与文件系统的混合模型
 - 确定 importer 采用“统一证据层 + 候选层”的输出契约
+- 确定 SQLite 为规范主对象与留痕对象的核心存储层
 
 当前主设计稿：
 
 - [2026-04-05-we-together-core-design.md](../specs/2026-04-05-we-together-core-design.md)
 - [2026-04-05-runtime-activation-and-flow-design.md](../specs/2026-04-05-runtime-activation-and-flow-design.md)
 - [2026-04-05-unified-importer-contract.md](../specs/2026-04-05-unified-importer-contract.md)
+- [2026-04-05-sqlite-schema-design.md](../specs/2026-04-05-sqlite-schema-design.md)
 
 下一步建议：
 
-- 定义图谱对象的具体 SQLite schema
 - 定义 patch 与 snapshot 结构
 - 定义 identity 融合策略
+- 定义运行时检索包格式
