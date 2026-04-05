@@ -30,6 +30,8 @@
 - 已落地首批 Python 工程骨架
 - 已落地 SQLite 主库迁移执行器与基础 schema
 - 已落地 narration importer、patch 构造器、identity 融合评分基线与 runtime retrieval package 基线
+- 已落地最小 CLI 端到端链路：bootstrap / create_scene / import_narration / build_retrieval_package
+- 当前本地全量测试通过：15 passed
 
 当前主设计稿：
 

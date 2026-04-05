@@ -34,7 +34,7 @@ def test_bootstrap_project_creates_database_and_runtime_dirs(temp_project_dir):
 def test_bootstrap_script_runs_from_repo_root():
     repo_root = Path(__file__).resolve().parents[2]
     result = subprocess.run(
-        [str(repo_root / ".venv" / "bin" / "python"), "scripts/bootstrap.py"],
+        [str(repo_root / ".venv" / "bin" / "python"), "scripts/bootstrap.py", "--root", str(repo_root)],
         cwd=repo_root,
         capture_output=True,
         text=True,
