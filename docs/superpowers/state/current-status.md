@@ -27,6 +27,9 @@
 - 已补齐 importer 复用矩阵
 - 已写入 Phase 1 架构基线 ADR
 - 已生成 Phase 1 implementation plan
+- 已落地首批 Python 工程骨架
+- 已落地 SQLite 主库迁移执行器与基础 schema
+- 已落地 narration importer、patch 构造器、identity 融合评分基线与 runtime retrieval package 基线
 
 当前主设计稿：
 

@@ -38,6 +38,9 @@
 - 确定演化策略为 **先写事件，再归并入图谱**
 - 确定留痕策略为 **Git 式混合模型**
 - 确定第一阶段只支持 **局部分支**，不支持整图分叉
+- 已落地 Phase 1 内核的首批 Python 工程骨架
+- 已落地 SQLite 主库迁移执行器与基础 schema
+- 已落地 narration importer、patch 构造器、identity 融合评分基线、runtime retrieval package 基线
 
 当前核心设计文档：
 
@@ -273,6 +276,39 @@
 ```
 
 后续实现会围绕这个文档结构推进，而不是把设计继续散落在聊天记录里。
+
+---
+
+## 本地开发启动
+
+当前仓库已经具备最小可运行的 Phase 1 内核骨架。
+
+### 1. 创建虚拟环境
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install pytest
+```
+
+### 2. 初始化数据库与运行目录
+
+```bash
+.venv/bin/python scripts/bootstrap.py
+```
+
+执行后会创建：
+
+- `db/main.sqlite3`
+- `data/raw/`
+- `data/derived/`
+- `data/snapshots/`
+- `data/runtime/`
+
+### 3. 运行测试
+
+```bash
+.venv/bin/python -m pytest -q
+```
 
 ---
 

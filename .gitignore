@@ -1,1 +1,12 @@
 .superpowers/
+.pytest_cache/
+__pycache__/
+*.pyc
+tmp/
+.venv/
+.DS_Store
+db/main.sqlite3
+data/raw/
+data/derived/
+data/runtime/
+data/snapshots/
