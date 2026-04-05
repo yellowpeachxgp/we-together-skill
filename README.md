@@ -43,6 +43,13 @@
 
 - [`docs/superpowers/specs/2026-04-05-we-together-core-design.md`](docs/superpowers/specs/2026-04-05-we-together-core-design.md)
 - [`docs/superpowers/state/current-status.md`](docs/superpowers/state/current-status.md)
+- [`docs/superpowers/specs/2026-04-05-runtime-activation-and-flow-design.md`](docs/superpowers/specs/2026-04-05-runtime-activation-and-flow-design.md)
+- [`docs/superpowers/specs/2026-04-05-unified-importer-contract.md`](docs/superpowers/specs/2026-04-05-unified-importer-contract.md)
+- [`docs/superpowers/specs/2026-04-05-sqlite-schema-design.md`](docs/superpowers/specs/2026-04-05-sqlite-schema-design.md)
+- [`docs/superpowers/specs/2026-04-05-patch-and-snapshot-design.md`](docs/superpowers/specs/2026-04-05-patch-and-snapshot-design.md)
+- [`docs/superpowers/specs/2026-04-05-identity-fusion-strategy.md`](docs/superpowers/specs/2026-04-05-identity-fusion-strategy.md)
+- [`docs/superpowers/specs/2026-04-05-runtime-retrieval-package-design.md`](docs/superpowers/specs/2026-04-05-runtime-retrieval-package-design.md)
+- [`docs/superpowers/specs/2026-04-05-scene-and-environment-enums.md`](docs/superpowers/specs/2026-04-05-scene-and-environment-enums.md)
 
 这意味着：
 
