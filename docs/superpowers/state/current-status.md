@@ -4,6 +4,7 @@
 
 当前已完成：
 
+- 已确立产品最高约束：严格工程化、通用型 Skill、数字赛博生态圈目标
 - 明确项目定位为 Skill-first 的社会图谱系统
 - 选定第一阶段锚点场景为 `C：混合小社会`
 - 确定采用统一社会图谱内核，而不是工作/亲密双系统拼接
@@ -41,6 +42,7 @@
 - [2026-04-05-importer-reuse-matrix.md](../importers/2026-04-05-importer-reuse-matrix.md)
 - [2026-04-05-phase-1-kernel-implementation.md](../plans/2026-04-05-phase-1-kernel-implementation.md)
 - [0001-phase-1-architecture-baseline.md](../decisions/0001-phase-1-architecture-baseline.md)
+- [2026-04-05-product-mandate.md](../vision/2026-04-05-product-mandate.md)
 
 下一步建议：
 

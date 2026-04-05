@@ -41,6 +41,7 @@
 
 当前核心设计文档：
 
+- [`docs/superpowers/vision/2026-04-05-product-mandate.md`](docs/superpowers/vision/2026-04-05-product-mandate.md)
 - [`docs/superpowers/specs/2026-04-05-we-together-core-design.md`](docs/superpowers/specs/2026-04-05-we-together-core-design.md)
 - [`docs/superpowers/state/current-status.md`](docs/superpowers/state/current-status.md)
 - [`docs/superpowers/specs/2026-04-05-runtime-activation-and-flow-design.md`](docs/superpowers/specs/2026-04-05-runtime-activation-and-flow-design.md)

@@ -18,6 +18,48 @@
 - 同时包含同事关系、亲密关系、私人关系
 - 场景同时覆盖工作群、私聊、共享历史和生活上下文
 
+## 1.1 最高优先级约束
+
+以下约束拥有**最高优先级**，后续所有设计、实现、导入、运行时与文档决策若发生冲突，必须以本节为准：
+
+### A. 严格工程化推进
+
+项目的推进方式必须严格工程化，至少满足：
+
+- 设计有文档
+- 变更有留痕
+- 阶段有归档
+- 实现有约束
+- 状态有跟踪
+- 关键决策有 ADR
+
+不得以“先做出来再说”替代正式工程流程。
+
+### B. 最终成品必须是通用型 Skill
+
+最终成品不是绑定单一宿主平台的脚本集合，而是一个**通用型 Skill 产品**。
+
+它必须在架构上支持：
+
+- Claude
+- Codex
+- 其他任意可承载 Skill / Prompt Runtime 的 LLM 系统
+
+因此，核心数据模型、运行时逻辑、导入器契约与留痕机制不得绑定某一特定平台实现。
+
+### C. 最终产品形态是可自适应、可扩展的数字赛博生态圈
+
+最终产品不是静态人物库，而是一个：
+
+- 可自适应
+- 可扩展
+- 具备“神经单元网格”式激活与传播特征
+- 可持续演化
+
+的数字赛博生态圈产品。
+
+这意味着第一阶段虽然可以做约束化切片，但所有基础设计都必须为后续开放式社会图谱演化预留空间。
+
 ## 2. 非目标
 
 第一阶段不以以下内容为目标：
@@ -340,7 +382,7 @@
 - `group_id`
 - `scene_id`
 - `timestamp`
-- `raw_evidence_refs`
+- `raw_evidence_refs_json`
 - `structured_summary`
 - `impact_targets`
 - `impact_patch_refs`
@@ -388,12 +430,13 @@
 - `scope_type`
 - `scope_id`
 - `state_type`
-- `value`
+- `value_json`
 - `confidence`
-- `source_event_ids`
-- `updated_at`
-- `decay_policy`
 - `is_inferred`
+- `decay_policy`
+- `source_event_refs_json`
+- `created_at`
+- `updated_at`
 
 关键规则：
 
