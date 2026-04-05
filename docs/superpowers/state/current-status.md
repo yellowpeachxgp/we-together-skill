@@ -13,13 +13,17 @@
 - 确定演化策略为“先写事件，再归并入图谱”
 - 确定留痕模型为 Git 式混合结构
 - 确定第一阶段只支持局部分支，不支持整图分叉
+- 确定运行时采用“有界激活传播模型”
+- 确定环境参数采用“核心维度固定 + 自定义扩展”
+- 确定主存储采用 SQLite 与文件系统的混合模型
 
 当前主设计稿：
 
 - [2026-04-05-we-together-core-design.md](../specs/2026-04-05-we-together-core-design.md)
+- [2026-04-05-runtime-activation-and-flow-design.md](../specs/2026-04-05-runtime-activation-and-flow-design.md)
 
 下一步建议：
 
-- 继续撰写“实体连接规则与更新流转”细化稿
 - 定义统一导入器契约
 - 定义图谱对象的具体存储格式
+- 定义 patch 与 snapshot 结构
