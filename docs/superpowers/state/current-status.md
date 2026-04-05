@@ -22,6 +22,10 @@
 - 确定默认激进融合、底层可逆的 identity 融合策略
 - 确定运行时采用固定结构的检索包
 - 确定 Scene 与环境参数采用“核心枚举 + 自定义扩展”
+- 已补齐启动与迁移方案
+- 已补齐 importer 复用矩阵
+- 已写入 Phase 1 架构基线 ADR
+- 已生成 Phase 1 implementation plan
 
 当前主设计稿：
 
@@ -33,9 +37,13 @@
 - [2026-04-05-identity-fusion-strategy.md](../specs/2026-04-05-identity-fusion-strategy.md)
 - [2026-04-05-runtime-retrieval-package-design.md](../specs/2026-04-05-runtime-retrieval-package-design.md)
 - [2026-04-05-scene-and-environment-enums.md](../specs/2026-04-05-scene-and-environment-enums.md)
+- [2026-04-05-phase-1-bootstrap-and-migrations.md](../architecture/2026-04-05-phase-1-bootstrap-and-migrations.md)
+- [2026-04-05-importer-reuse-matrix.md](../importers/2026-04-05-importer-reuse-matrix.md)
+- [2026-04-05-phase-1-kernel-implementation.md](../plans/2026-04-05-phase-1-kernel-implementation.md)
+- [0001-phase-1-architecture-baseline.md](../decisions/0001-phase-1-architecture-baseline.md)
 
 下一步建议：
 
-- 开始整理首版数据库迁移与初始化方案
-- 开始整理 importer 适配优先级与复用清单
 - 进入真正的实现计划
+- 优先实现数据库与 bootstrap 链路
+- 再接 narration importer 与最小 runtime 链路
