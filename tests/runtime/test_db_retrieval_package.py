@@ -1,5 +1,6 @@
 from we_together.db.bootstrap import bootstrap_project
 from we_together.runtime.sqlite_retrieval import build_runtime_retrieval_package_from_db
+from we_together.services.group_service import create_group, add_group_member
 from we_together.services.scene_service import create_scene, add_scene_participant
 from we_together.services.ingestion_service import ingest_narration
 import sqlite3
@@ -92,3 +93,42 @@ def test_build_runtime_retrieval_package_uses_person_names_and_active_relations(
     assert "小李" in display_names
     assert len(package["active_relations"]) >= 1
     assert len(package["relevant_memories"]) >= 1
+
+
+def test_retrieval_package_includes_group_context_when_scene_has_group(temp_project_with_migrations):
+    bootstrap_project(temp_project_with_migrations)
+    db_path = temp_project_with_migrations / "db" / "main.sqlite3"
+
+    group_id = create_group(
+        db_path=db_path,
+        group_type="team",
+        name="核心团队",
+        summary="主开发小组",
+    )
+    add_group_member(db_path=db_path, group_id=group_id, person_id="person_alice", role_label="owner")
+
+    scene_id = create_scene(
+        db_path=db_path,
+        scene_type="work_discussion",
+        scene_summary="team sync",
+        environment={
+            "location_scope": "remote",
+            "channel_scope": "group_channel",
+            "visibility_scope": "group_visible",
+        },
+        group_id=group_id,
+    )
+    add_scene_participant(
+        db_path=db_path,
+        scene_id=scene_id,
+        person_id="person_alice",
+        activation_state="explicit",
+        activation_score=1.0,
+        is_speaking=True,
+    )
+
+    package = build_runtime_retrieval_package_from_db(db_path=db_path, scene_id=scene_id)
+
+    assert package["scene_summary"]["group_id"] == group_id
+    assert package["group_context"]["group_id"] == group_id
+    assert package["group_context"]["name"] == "核心团队"

@@ -30,16 +30,19 @@
 - 已落地首批 Python 工程骨架
 - 已落地 SQLite 主库迁移执行器与基础 schema
 - 已接入基础枚举 seed 初始化
-- 已落地 narration importer、patch 构造器、identity 融合评分基线与 runtime retrieval package 基线
+- 已落地 Group 主对象与 group_members 真实落库
+- 已落地 narration importer、patch 构造器、identity 融合评分基线、runtime retrieval package 基线
 - 已落地最小 CLI 端到端链路：bootstrap / create_scene / import_narration / build_retrieval_package
 - narration 导入已能自动抽取简单人物与关系并落图谱
 - 已接通 text_chat importer，可从通用聊天文本中抽取人物、事件与基础关系
 - 已接通 auto import 入口，可在 narration 与 text_chat 之间自动判别
 - 已接通 email importer，可从 `.eml` 文件中抽取发件人、主题、正文并落图谱
 - 已接通文件级 auto import，可对文本文件与 `.eml` 自动分流
-- retrieval package 已能回填参与者姓名并带出场景下已知关系
-- narration / text_chat 导入已能沉淀共享记忆并写入 retrieval package
-- 当前本地全量测试通过：35 passed
+- 各导入链已开始落地 `IdentityLink`，图谱中可见跨来源身份映射
+- retrieval package 已能回填参与者真实姓名，并带出当前场景下的已知关系与 group context
+- narration / text_chat 导入已能沉淀共享记忆，并在 retrieval package 中参与当前场景上下文
+- 已落地最小 `patch applier`，可通过统一入口应用 `create_memory` 与 `update_state` 这类结构化变更
+- 当前本地全量测试通过：40 passed
 
 当前主设计稿：
 
