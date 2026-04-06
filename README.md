@@ -46,6 +46,8 @@
 - narration 导入已能从简单口述文本中自动抽取人物与关系并落入图谱
 - 已接通 `text_chat` importer，可从通用聊天文本中抽取发言人、事件与基础关系
 - 已接通 `auto import` 入口，可在 narration 与 text_chat 之间自动判别
+- 已接通 `email` importer，可从 `.eml` 文件中抽取发件人、主题、正文并落图谱
+- 已接通文件级 `auto import`，可对本地文本文件与 `.eml` 文件自动分流
 - 从 SQLite 生成的 retrieval package 已能回填参与者真实姓名，并带出当前场景下的已知关系
 - narration / text_chat 导入已能沉淀共享记忆，并在 retrieval package 中参与当前场景上下文
 
@@ -326,6 +328,8 @@ python3 -m venv .venv
 .venv/bin/python scripts/import_narration.py --root . --text "小王和小李以前是同事，现在还是朋友。" --source-name manual-note
 .venv/bin/python scripts/import_text_chat.py --root . --source-name chat.txt --transcript $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
 .venv/bin/python scripts/import_auto.py --root . --source-name auto.txt --text $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
+.venv/bin/python scripts/import_email_file.py --root . --file ./sample.eml
+.venv/bin/python scripts/import_file_auto.py --root . --file ./sample.txt
 .venv/bin/python scripts/build_retrieval_package.py --root . --scene-id <scene_id>
 .venv/bin/python scripts/graph_summary.py --root .
 ```
