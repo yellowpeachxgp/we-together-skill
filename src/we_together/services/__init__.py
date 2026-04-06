@@ -3,4 +3,6 @@ __all__ = [
     "patch_service",
     "identity_fusion_service",
     "snapshot_service",
+    "scene_service",
+    "ingestion_service",
 ]
