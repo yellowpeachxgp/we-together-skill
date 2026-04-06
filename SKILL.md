@@ -38,6 +38,7 @@ version: "0.1.0"
 - 创建场景
 - 导入口述文本
 - 导入通用聊天文本
+- 自动判别文本导入模式
 - 从 SQLite 生成最小 runtime retrieval package
 - 输出图谱摘要
 
@@ -48,6 +49,7 @@ version: "0.1.0"
 .venv/bin/python scripts/create_scene.py --root . --scene-type private_chat --summary "night chat" --location-scope remote --channel-scope private_dm --visibility-scope mutual_visible --participant person_demo
 .venv/bin/python scripts/import_narration.py --root . --text "小王和小李以前是同事，现在还是朋友。" --source-name manual-note
 .venv/bin/python scripts/import_text_chat.py --root . --source-name chat.txt --transcript $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
+.venv/bin/python scripts/import_auto.py --root . --source-name auto.txt --text $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
 .venv/bin/python scripts/build_retrieval_package.py --root . --scene-id <scene_id>
 .venv/bin/python scripts/graph_summary.py --root .
 ```
@@ -68,7 +70,7 @@ version: "0.1.0"
 
 你应该：
 
-1. 判断当前输入更适合 narration、text chat 或其他 importer
+1. 优先尝试 `import_auto.py` 自动判断
 2. 先确保数据库已初始化
 3. 自动调用相应导入脚本
 4. 必要时创建场景

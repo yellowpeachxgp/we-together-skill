@@ -44,6 +44,7 @@
 - 已落地最小 CLI 工作流：`bootstrap -> create_scene -> import_narration -> build_retrieval_package`
 - narration 导入已能从简单口述文本中自动抽取人物与关系并落入图谱
 - 已接通 `text_chat` importer，可从通用聊天文本中抽取发言人、事件与基础关系
+- 已接通 `auto import` 入口，可在 narration 与 text_chat 之间自动判别
 
 当前核心设计文档：
 
@@ -320,6 +321,7 @@ python3 -m venv .venv
 .venv/bin/python scripts/create_scene.py --root . --scene-type private_chat --summary "night chat" --location-scope remote --channel-scope private_dm --visibility-scope mutual_visible --participant person_demo
 .venv/bin/python scripts/import_narration.py --root . --text "小王和小李以前是同事，现在还是朋友。" --source-name manual-note
 .venv/bin/python scripts/import_text_chat.py --root . --source-name chat.txt --transcript $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
+.venv/bin/python scripts/import_auto.py --root . --source-name auto.txt --text $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
 .venv/bin/python scripts/build_retrieval_package.py --root . --scene-id <scene_id>
 .venv/bin/python scripts/graph_summary.py --root .
 ```

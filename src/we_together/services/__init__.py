@@ -5,4 +5,5 @@ __all__ = [
     "snapshot_service",
     "scene_service",
     "ingestion_service",
+    "auto_ingestion_service",
 ]
