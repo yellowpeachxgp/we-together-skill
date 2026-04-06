@@ -205,6 +205,36 @@ def ingest_narration(db_path: Path, text: str, source_name: str) -> dict:
                     """,
                     (event_id, "relation", relation_id, label),
                 )
+        memory_id = f"memory_{uuid.uuid5(uuid.NAMESPACE_URL, f'memory:{person_ids[0]}:{person_ids[1]}:{text}').hex}"
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO memories(
+                memory_id, memory_type, summary, emotional_tone, relevance_score,
+                confidence, is_shared, status, metadata_json, created_at, updated_at
+            ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                memory_id,
+                "shared_memory",
+                text,
+                None,
+                1.0,
+                0.7,
+                1,
+                "active",
+                json.dumps({"source_event_id": event_id}, ensure_ascii=False),
+                now,
+                now,
+            ),
+        )
+        for person_id in person_ids[:2]:
+            conn.execute(
+                """
+                INSERT OR IGNORE INTO memory_owners(memory_id, owner_type, owner_id, role_label)
+                VALUES(?, ?, ?, ?)
+                """,
+                (memory_id, "person", person_id, "shared"),
+            )
     conn.execute(
         """
         INSERT INTO patches(
@@ -425,6 +455,36 @@ def ingest_text_chat(db_path: Path, transcript: str, source_name: str) -> dict:
                 now,
             ),
         )
+        memory_id = f"memory_{uuid.uuid5(uuid.NAMESPACE_URL, f'text_chat:{people[0]}:{people[1]}:{transcript}').hex}"
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO memories(
+                memory_id, memory_type, summary, emotional_tone, relevance_score,
+                confidence, is_shared, status, metadata_json, created_at, updated_at
+            ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                memory_id,
+                "shared_memory",
+                "来源于文本聊天导入",
+                None,
+                0.8,
+                0.6,
+                1,
+                "active",
+                json.dumps({"source": "text_chat"}, ensure_ascii=False),
+                now,
+                now,
+            ),
+        )
+        for person_id in people[:2]:
+            conn.execute(
+                """
+                INSERT OR IGNORE INTO memory_owners(memory_id, owner_type, owner_id, role_label)
+                VALUES(?, ?, ?, ?)
+                """,
+                (memory_id, "person", person_id, "shared"),
+            )
 
     snapshot_id = f"snap_{uuid.uuid4().hex}"
     graph_hash = hashlib.sha256(f"{import_job_id}:{evidence_id}:{event_count}".encode()).hexdigest()

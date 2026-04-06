@@ -35,7 +35,9 @@
 - narration 导入已能自动抽取简单人物与关系并落图谱
 - 已接通 text_chat importer，可从通用聊天文本中抽取人物、事件与基础关系
 - 已接通 auto import 入口，可在 narration 与 text_chat 之间自动判别
-- 当前本地全量测试通过：26 passed
+- retrieval package 已能回填参与者姓名并带出场景下已知关系
+- narration / text_chat 导入已能沉淀共享记忆并写入 retrieval package
+- 当前本地全量测试通过：27 passed
 
 当前主设计稿：
 
