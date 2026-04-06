@@ -19,4 +19,9 @@ def temp_project_with_migrations(temp_project_dir):
     target_dir.mkdir(parents=True, exist_ok=True)
     for sql_file in source_dir.glob("*.sql"):
         shutil.copy2(sql_file, target_dir / sql_file.name)
+    source_seeds = repo_root / "db" / "seeds"
+    target_seeds = temp_project_dir / "db" / "seeds"
+    target_seeds.mkdir(parents=True, exist_ok=True)
+    for seed_file in source_seeds.glob("*.json"):
+        shutil.copy2(seed_file, target_seeds / seed_file.name)
     return temp_project_dir

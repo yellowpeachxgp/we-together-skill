@@ -40,6 +40,7 @@
 - 确定第一阶段只支持 **局部分支**，不支持整图分叉
 - 已落地 Phase 1 内核的首批 Python 工程骨架
 - 已落地 SQLite 主库迁移执行器与基础 schema
+- 已接入基础枚举 seed 初始化
 - 已落地 narration importer、patch 构造器、identity 融合评分基线、runtime retrieval package 基线
 - 已落地最小 CLI 工作流：`bootstrap -> create_scene -> import_narration -> build_retrieval_package`
 - narration 导入已能从简单口述文本中自动抽取人物与关系并落入图谱
@@ -303,6 +304,7 @@ python3 -m venv .venv
 执行后会创建：
 
 - `db/main.sqlite3`
+- 基础枚举 seed
 - `data/raw/`
 - `data/derived/`
 - `data/snapshots/`
