@@ -41,6 +41,9 @@
 - 已落地 Phase 1 内核的首批 Python 工程骨架
 - 已落地 SQLite 主库迁移执行器与基础 schema
 - 已落地 narration importer、patch 构造器、identity 融合评分基线、runtime retrieval package 基线
+- 已落地最小 CLI 工作流：`bootstrap -> create_scene -> import_narration -> build_retrieval_package`
+- narration 导入已能从简单口述文本中自动抽取人物与关系并落入图谱
+- 已接通 `text_chat` importer，可从通用聊天文本中抽取发言人、事件与基础关系
 
 当前核心设计文档：
 
@@ -57,7 +60,7 @@
 
 这意味着：
 
-- 仓库现在适合被公开为 **项目基线与实现起点仓库**
+- 仓库现在适合被公开为 **项目基线与设计仓库**
 - 但不应宣称所有采集器、图谱运行时、多人共演都已经完成
 
 ---
@@ -308,6 +311,17 @@ python3 -m venv .venv
 
 ```bash
 .venv/bin/python -m pytest -q
+```
+
+### 4. 运行最小端到端链路
+
+```bash
+.venv/bin/python scripts/bootstrap.py --root .
+.venv/bin/python scripts/create_scene.py --root . --scene-type private_chat --summary "night chat" --location-scope remote --channel-scope private_dm --visibility-scope mutual_visible --participant person_demo
+.venv/bin/python scripts/import_narration.py --root . --text "小王和小李以前是同事，现在还是朋友。" --source-name manual-note
+.venv/bin/python scripts/import_text_chat.py --root . --source-name chat.txt --transcript $'2026-04-06 23:10 小王: 今天好累\n2026-04-06 23:11 小李: 早点休息\n'
+.venv/bin/python scripts/build_retrieval_package.py --root . --scene-id <scene_id>
+.venv/bin/python scripts/graph_summary.py --root .
 ```
 
 ---
