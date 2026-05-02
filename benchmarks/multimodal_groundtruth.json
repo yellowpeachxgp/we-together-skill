@@ -1,0 +1,8 @@
+{
+  "benchmark_name": "multimodal_v1",
+  "expected_modalities": ["text", "image", "audio", "video", "document"],
+  "expected_importers": [
+    "audio_importer", "video_importer", "document_importer",
+    "screenshot_series_importer", "image_importer"
+  ]
+}

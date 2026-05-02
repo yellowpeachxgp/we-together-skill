@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Lint (ruff)
+        run: ruff check src tests scripts || true
+      - name: Type check (mypy - 核心模块)
+        run: mypy src/we_together/eval src/we_together/observability src/we_together/runtime/streaming.py || true
+      - name: Unit tests
+        run: pytest -q
+      - name: Integration tests
+        run: pytest -q tests/integration
+      - name: Eval regression gate
+        run: |
+          we-together bootstrap --root /tmp/ci_wt
+          we-together seed-demo --root /tmp/ci_wt
+          we-together eval-relation --root /tmp/ci_wt --baseline eval/baseline.json
+
+  docker:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build docker image
+        run: docker build -t we-together:ci -f docker/Dockerfile .
+      - name: Smoke version
+        run: docker run --rm we-together:ci version

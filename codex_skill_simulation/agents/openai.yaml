@@ -1,0 +1,4 @@
+interface:
+  display_name: "we-together-simulation"
+  short_description: "处理 what-if、tick、dream cycle 与长期模拟"
+  default_prompt: "使用 $we-together-simulation 运行 what-if、simulate_year、dream_cycle，或分析 we-together 的长期演化结果。"

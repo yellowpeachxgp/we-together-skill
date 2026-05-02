@@ -1,0 +1,16 @@
+{
+  "benchmark_name": "multimodal_retrieval_v1",
+  "description": "跨模态检索：text query 对 image embedding 的 top-k 召回",
+  "query_to_images": [
+    {
+      "query": "dog in park",
+      "relevant_ids": ["img_dog_01", "img_dog_02"],
+      "irrelevant_ids": ["img_cat_01", "img_car_01"]
+    },
+    {
+      "query": "cat on sofa",
+      "relevant_ids": ["img_cat_01", "img_cat_02"],
+      "irrelevant_ids": ["img_dog_01", "img_car_01"]
+    }
+  ]
+}

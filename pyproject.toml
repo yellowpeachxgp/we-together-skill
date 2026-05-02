@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "we-together"
+version = "0.19.0"
+description = "Skill-first social graph runtime — build and run a small digital society (scenes, events, memories, relations) that evolves over time."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+  {name = "yellowpeach"},
+]
+keywords = ["skill", "social-graph", "llm", "anthropic", "openai", "knowledge-graph"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/yellowpeach/we-together-skill"
+Documentation = "https://github.com/yellowpeach/we-together-skill/tree/main/docs"
+Issues = "https://github.com/yellowpeach/we-together-skill/issues"
+
+[project.scripts]
+we-together = "we_together.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6", "mypy>=1.10"]
+anthropic = ["anthropic>=0.34"]
+openai = ["openai>=1.40"]
+vision = ["anthropic>=0.34"]
+vector = ["sqlite-vec>=0.1.9", "faiss-cpu>=1.13.2", "numpy>=2.4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["data", ".venv", "db/main.sqlite3"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "W"]
+ignore = [
+  "E501",   # line too long（格式问题由 format 处理）
+  "B008",   # 默认参数里 call 的模式在本项目常见
+  "B007",   # 未用的循环变量（约定用 _ 前缀即可，不重构现有代码）
+  "UP007",  # Optional vs X | None：Py3.11 都支持但部分旧写法保留
+  "UP031",  # `%` SQL formatter 是本项目动态生成占位符的主要方式
+  "UP032",  # f-string vs .format，不强制
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["F401", "F811", "E402"]
+"scripts/**" = ["E402"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_unused_ignores = false
+check_untyped_defs = false
+disallow_untyped_defs = false
+# 渐进式：不要求全部注解，只当语义检查使
+files = ["src/we_together"]

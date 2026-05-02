@@ -1,0 +1,36 @@
+site_name: we-together
+site_description: Skill-first 社会 + 世界图谱运行时
+site_url: https://example.com/we-together
+repo_url: https://github.com/example/we-together
+docs_dir: docs
+theme:
+  name: null   # 本项目不引入 mkdocs-material 依赖；保持 vanilla mkdocs 最小集
+  custom_dir: null
+
+nav:
+  - 首页: index.md
+  - 快速上手: getting-started.md
+  - 宿主接入:
+      - Claude Desktop: hosts/claude-desktop.md
+      - Claude Code: hosts/claude-code.md
+      - OpenAI Assistants: hosts/openai-assistants.md
+  - 对比:
+      - vs Mem0: comparisons/vs_mem0.md
+      - vs Letta: comparisons/vs_letta.md
+      - vs LangMem: comparisons/vs_langmem.md
+  - 教程:
+      - 家庭图谱: tutorials/family_graph.md
+  - 插件:
+      - 编写指南: plugins/authoring.md
+  - 调度:
+      - Tick Scheduling: tick-scheduling.md
+  - 架构:
+      - 当前状态: superpowers/state/current-status.md
+  - 发布:
+      - v0.16.0 Release Notes: release_notes_v0.16.0.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true

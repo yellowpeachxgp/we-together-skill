@@ -1,0 +1,25 @@
+{
+  "benchmark_name": "society_c_v1",
+  "persons": [
+    {"person_id": "alice", "primary_name": "Alice"},
+    {"person_id": "bob", "primary_name": "Bob"},
+    {"person_id": "carol", "primary_name": "Carol"},
+    {"person_id": "dan", "primary_name": "Dan"},
+    {"person_id": "eve", "primary_name": "Eve"},
+    {"person_id": "frank", "primary_name": "Frank"},
+    {"person_id": "grace", "primary_name": "Grace"},
+    {"person_id": "henry", "primary_name": "Henry"}
+  ],
+  "expected_relations": [
+    {"person_a": "Alice", "person_b": "Bob", "core_type": "work", "min_strength": 0.5},
+    {"person_a": "Alice", "person_b": "Dan", "core_type": "intimacy", "min_strength": 0.6},
+    {"person_a": "Alice", "person_b": "Eve", "core_type": "friendship", "min_strength": 0.5},
+    {"person_a": "Bob", "person_b": "Grace", "core_type": "family", "min_strength": 0.5},
+    {"person_a": "Carol", "person_b": "Henry", "core_type": "authority", "min_strength": 0.5}
+  ],
+  "expected_scenes": [
+    {"scene_type": "work_discussion", "participant_names": ["Alice", "Bob"]},
+    {"scene_type": "private_chat", "participant_names": ["Alice", "Dan"]},
+    {"scene_type": "casual_gathering", "participant_names": ["Alice", "Eve"]}
+  ]
+}

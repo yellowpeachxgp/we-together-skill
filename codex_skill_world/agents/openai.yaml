@@ -1,0 +1,4 @@
+interface:
+  display_name: "we-together-world"
+  short_description: "处理 we-together tenant/world 与世界建模请求"
+  default_prompt: "使用 $we-together-world 查询 tenant 状态、active world、世界对象/地点/项目，或继续推进 tenant/world 隔离开发。"

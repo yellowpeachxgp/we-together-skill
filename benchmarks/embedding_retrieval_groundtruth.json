@@ -1,0 +1,22 @@
+{
+  "benchmark_name": "embedding_retrieval_v1",
+  "description": "简单的主题-记忆关联：给定主题 seed，期望召回 memory_id 列表",
+  "seed_memories": [
+    {"memory_id": "m_work_1", "summary": "今天和同事讨论架构方案，下周要 review 代码。"},
+    {"memory_id": "m_work_2", "summary": "团队里 Bob 负责后端 API 设计与调优。"},
+    {"memory_id": "m_life_1", "summary": "周末和朋友去爬山，天气很好。"},
+    {"memory_id": "m_life_2", "summary": "晚上吃了新开的日料餐厅，料理不错。"}
+  ],
+  "queries": [
+    {
+      "seed_text": "工作会议 项目 代码",
+      "expected_top_ids": ["m_work_1", "m_work_2"],
+      "min_hits_in_top_k": 1
+    },
+    {
+      "seed_text": "周末 娱乐 休息",
+      "expected_top_ids": ["m_life_1", "m_life_2"],
+      "min_hits_in_top_k": 1
+    }
+  ]
+}

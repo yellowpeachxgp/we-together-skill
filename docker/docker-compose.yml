@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: we-together:0.9.0
+    command: ["graph-summary", "--root", "/data"]
+    volumes:
+      - wt-data:/data
+    environment:
+      - WE_TOGETHER_DB_ROOT=/data
+      - WE_TOGETHER_LLM_PROVIDER=${WE_TOGETHER_LLM_PROVIDER:-mock}
+
+  metrics:
+    image: we-together:0.9.0
+    depends_on: [app]
+    command: ["metrics-server", "--host", "0.0.0.0", "--port", "9100"]
+    ports: ["9100:9100"]
+    volumes:
+      - wt-data:/data
+
+  branch-console:
+    image: we-together:0.9.0
+    depends_on: [app]
+    command: ["branch-console", "--root", "/data", "--host", "0.0.0.0", "--port", "8765"]
+    ports: ["8765:8765"]
+    environment:
+      - WE_TOGETHER_DB_ROOT=/data
+    volumes:
+      - wt-data:/data
+
+volumes:
+  wt-data:

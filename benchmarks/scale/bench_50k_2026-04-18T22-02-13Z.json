@@ -1,0 +1,11 @@
+{
+  "n_seeded": 50000,
+  "dim": 16,
+  "seed_s": 0.423,
+  "build_s": 0.148,
+  "index_size": 100000,
+  "queries": 30,
+  "query_total_s": 4.868,
+  "per_query_ms": 162.25,
+  "qps": 6.2
+}

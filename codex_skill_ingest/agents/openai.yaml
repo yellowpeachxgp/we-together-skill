@@ -1,0 +1,4 @@
+interface:
+  display_name: "we-together-ingest"
+  short_description: "处理 we-together bootstrap 与导入材料"
+  default_prompt: "使用 $we-together-ingest 执行 bootstrap 或导入 narration/text/email/file/directory 材料。"

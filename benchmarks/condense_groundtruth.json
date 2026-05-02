@@ -1,0 +1,25 @@
+{
+  "benchmark_name": "condense_v1",
+  "description": "Condenser fidelity benchmark: 给定若干源记忆 summary + 凝练摘要，打分",
+  "cases": [
+    {
+      "case_id": "c1",
+      "sources": [
+        "Alice 和 Bob 在工作午餐讨论了架构方案。",
+        "Alice 和 Bob 决定下周 review 代码。",
+        "Alice 和 Bob 明确了下一个里程碑是 Q2 末。"
+      ],
+      "condensed": "Alice 和 Bob 在午餐会讨论架构方案并约定下周代码 review，里程碑 Q2 末。",
+      "expected_fidelity_min": 0.7
+    },
+    {
+      "case_id": "c2",
+      "sources": [
+        "Carol 在周末与 Dan 一起去爬山。",
+        "Carol 说这是她们这个月第三次一起运动。"
+      ],
+      "condensed": "Carol 与 Dan 本月第三次一起运动，这次是周末爬山。",
+      "expected_fidelity_min": 0.7
+    }
+  ]
+}

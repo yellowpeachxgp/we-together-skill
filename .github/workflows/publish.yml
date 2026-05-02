@@ -1,0 +1,40 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish, without leading v"
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade build twine pytest
+          python -m pip install -e .
+      - name: Test
+        run: |
+          python -m pytest -q
+      - name: Strict product gate
+        run: |
+          python scripts/release_strict_e2e.py --profile strict
+      - name: Build
+        run: |
+          rm -rf dist/ build/ *.egg-info
+          python -m build --wheel --sdist
+      - name: Twine check
+        run: |
+          python -m twine check dist/we_together-${{ inputs.version }}-py3-none-any.whl dist/we_together-${{ inputs.version }}.tar.gz
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          python -m twine upload dist/we_together-${{ inputs.version }}-py3-none-any.whl dist/we_together-${{ inputs.version }}.tar.gz

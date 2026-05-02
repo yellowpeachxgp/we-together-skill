@@ -1,0 +1,96 @@
+{
+  "days": 365,
+  "budget_input": 0,
+  "budget_remaining": 0,
+  "total_snapshots_added": 2,
+  "total_months": 13,
+  "monthly": [
+    {
+      "month": 0,
+      "days": 30,
+      "snapshots_added": 1
+    },
+    {
+      "month": 1,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 2,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 3,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 4,
+      "days": 30,
+      "snapshots_added": 1
+    },
+    {
+      "month": 5,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 6,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 7,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 8,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 9,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 10,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 11,
+      "days": 30,
+      "snapshots_added": 0
+    },
+    {
+      "month": 12,
+      "days": 5,
+      "snapshots_added": 0
+    }
+  ],
+  "sanity": {
+    "growth": {
+      "memory_count": 3,
+      "event_count": 5,
+      "memory_per_tick": 0.00821917808219178,
+      "event_per_tick": 0.0136986301369863,
+      "memory_growth_ok": true,
+      "event_growth_ok": true
+    },
+    "anomalies": {
+      "low_confidence_memories": 0,
+      "orphan_memories": 0,
+      "duplicate_event_summaries": 0,
+      "anomaly_count": 0
+    },
+    "healthy": true
+  },
+  "integrity": {
+    "total_issues": 0,
+    "healthy": true
+  },
+  "generated_at": "2026-04-18T21:20:54.472649+00:00"
+}

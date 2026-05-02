@@ -1,0 +1,18 @@
+{
+  "benchmark_name": "society_d_v1",
+  "description": "更大 10 人社会（扩展版，用于未来 seed_society_d）",
+  "persons": [
+    {"person_id": "pd_a", "primary_name": "PD_Alice"},
+    {"person_id": "pd_b", "primary_name": "PD_Bob"},
+    {"person_id": "pd_c", "primary_name": "PD_Carol"},
+    {"person_id": "pd_d", "primary_name": "PD_Dan"},
+    {"person_id": "pd_e", "primary_name": "PD_Eve"},
+    {"person_id": "pd_f", "primary_name": "PD_Frank"},
+    {"person_id": "pd_g", "primary_name": "PD_Grace"},
+    {"person_id": "pd_h", "primary_name": "PD_Henry"},
+    {"person_id": "pd_i", "primary_name": "PD_Ivy"},
+    {"person_id": "pd_j", "primary_name": "PD_Jack"}
+  ],
+  "expected_relations": [],
+  "expected_scenes": []
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "we-together-dev"
+  short_description: "处理 we-together 仓库开发态请求"
+  default_prompt: "使用 $we-together-dev 读取当前状态、交接文档、测试基线，或继续推进 we-together 的工程开发。"

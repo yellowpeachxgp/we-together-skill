@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix, src, tests, scripts]
+
+  - repo: local
+    hooks:
+      - id: pytest-fast
+        name: pytest fast subset
+        entry: python -m pytest tests/test_cli_entry.py tests/eval tests/integration -q
+        language: system
+        pass_filenames: false
+        stages: [commit]

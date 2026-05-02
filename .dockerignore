@@ -1,0 +1,16 @@
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.venv
+.git
+.github
+data/
+db/main.sqlite3
+db/*.db
+**/*.sqlite3
+docs/superpowers/plans/scratch
+.DS_Store

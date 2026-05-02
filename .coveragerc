@@ -1,0 +1,22 @@
+[run]
+source = src/we_together
+branch = true
+omit =
+    */tests/*
+    */__pycache__/*
+    */providers/anthropic.py
+    */providers/openai_compat.py
+    */providers/vision.py
+    */providers/audio.py
+    */providers/embedding.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    raise ImportError
+    if __name__ == .__main__.:
+    pass
+    \\.\\.\\.
+show_missing = true
+skip_covered = false

@@ -1,0 +1,31 @@
+# MANIFEST.in — 确保 migrations / seeds / prompts 等资源被打入 wheel
+
+include README.md
+include SKILL.md
+include we_together.sample.toml
+include docs/CHANGELOG.md
+
+recursive-include db/migrations *.sql
+recursive-include db/seeds *.yaml *.yml *.json
+recursive-include benchmarks *.json
+recursive-include src/we_together/prompts/templates *.txt
+
+recursive-exclude tests *
+recursive-exclude .venv *
+recursive-exclude data *
+recursive-exclude .github *
+prune build
+prune dist
+prune output
+prune .serena
+prune .playwright-cli
+prune docs/superpowers/plans/scratch
+global-exclude .DS_Store
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.sqlite3
+global-exclude *.sqlite3-shm
+global-exclude *.sqlite3-wal
+global-exclude *.db
+global-exclude *.db-shm
+global-exclude *.db-wal

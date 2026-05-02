@@ -1,0 +1,12 @@
+{
+  "entity_tags": [
+    {"entity_type": "scene_enum", "entity_id": "private_chat", "tag": "scene_type", "weight": 1.0},
+    {"entity_type": "scene_enum", "entity_id": "group_chat", "tag": "scene_type", "weight": 1.0},
+    {"entity_type": "scene_enum", "entity_id": "meeting", "tag": "scene_type", "weight": 1.0},
+    {"entity_type": "scene_enum", "entity_id": "work_discussion", "tag": "scene_type", "weight": 1.0},
+    {"entity_type": "scene_enum", "entity_id": "casual_social", "tag": "scene_type", "weight": 1.0},
+    {"entity_type": "activation_enum", "entity_id": "inactive", "tag": "activation_state", "weight": 1.0},
+    {"entity_type": "activation_enum", "entity_id": "latent", "tag": "activation_state", "weight": 1.0},
+    {"entity_type": "activation_enum", "entity_id": "explicit", "tag": "activation_state", "weight": 1.0}
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "we-together-runtime"
+  short_description: "处理 we-together 图谱与运行态元信息"
+  default_prompt: "使用 $we-together-runtime 查询图谱摘要、不变式、自描述或 tenant 元信息。"

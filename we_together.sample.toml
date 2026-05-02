@@ -1,0 +1,17 @@
+# we-together sample config
+# 实际使用时复制到 we_together.toml 并按需覆盖
+
+[llm]
+provider = "mock"   # 或 anthropic / openai_compat
+
+[runtime]
+daily_budget_self = 3
+daily_budget_pair = 2
+cache_ttl_seconds = 3600
+retrieval_max_memories = 20
+retrieval_max_relations = 10
+retrieval_max_states = 30
+
+[storage]
+db_root = "."
+tenant_id = "default"

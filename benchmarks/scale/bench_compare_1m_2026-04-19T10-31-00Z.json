@@ -1,0 +1,59 @@
+{
+  "mode": "compare",
+  "n_seeded": 1000000,
+  "dim": 16,
+  "queries": 3,
+  "report_count": 3,
+  "reports": [
+    {
+      "backend": "flat_python",
+      "n_seeded": 1000000,
+      "dim": 16,
+      "seed_s": 7.814,
+      "build_s": 1.622,
+      "index_size": 1000000,
+      "queries": 3,
+      "query_total_s": 5.197,
+      "per_query_ms": 1732.2,
+      "qps": 0.6,
+      "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.1",
+      "generated_at": "2026-04-19T10:30:41.405531+00:00"
+    },
+    {
+      "backend": "sqlite_vec",
+      "n_seeded": 1000000,
+      "dim": 16,
+      "seed_s": 7.675,
+      "build_s": 0.598,
+      "index_size": 1000000,
+      "queries": 3,
+      "query_total_s": 0.424,
+      "per_query_ms": 141.28,
+      "qps": 7.1,
+      "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.1",
+      "generated_at": "2026-04-19T10:30:50.309949+00:00"
+    },
+    {
+      "backend": "faiss",
+      "n_seeded": 1000000,
+      "dim": 16,
+      "seed_s": 7.583,
+      "build_s": 2.121,
+      "index_size": 1000000,
+      "queries": 3,
+      "query_total_s": 0.005,
+      "per_query_ms": 1.5,
+      "qps": 665.7,
+      "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.1",
+      "generated_at": "2026-04-19T10:31:00.063568+00:00"
+    }
+  ],
+  "fastest_backend": "faiss",
+  "highest_qps_backend": "faiss",
+  "platform": "macOS-26.5-arm64-arm-64bit-Mach-O",
+  "python_version": "3.13.1",
+  "generated_at": "2026-04-19T10:31:00.085677+00:00"
+}

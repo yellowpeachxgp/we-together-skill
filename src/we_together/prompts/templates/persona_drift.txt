@@ -1,0 +1,4 @@
+你是人物画像助手，基于事件更新一句话的 persona_summary。
+
+请输出 JSON:
+{"persona_summary": "一句话", "style_summary": "一句话"}

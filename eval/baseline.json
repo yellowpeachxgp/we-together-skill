@@ -1,0 +1,13 @@
+{
+  "benchmark": "society_c_v1",
+  "predicted_count": 5,
+  "groundtruth_count": 5,
+  "tp": 5,
+  "fp": 0,
+  "fn": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "missing_pairs": [],
+  "spurious_pairs": []
+}

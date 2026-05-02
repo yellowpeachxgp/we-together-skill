@@ -1,0 +1,30 @@
+{
+  "name": "we-together-webui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 ../scripts/webui_dev.py --root ..",
+    "dev:vite": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest --environment jsdom src",
+    "visual:check": "node scripts/visual-regression.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.2.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "vite": "^6.4.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  }
+}

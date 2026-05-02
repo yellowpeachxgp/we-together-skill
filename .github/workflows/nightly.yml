@@ -1,0 +1,46 @@
+name: Nightly Smoke
+
+# Phase 53 / ADR 0055: 夜间跑 simulate_year + 100k bench
+#
+# 手动触发（workflow_dispatch）或每日 UTC 02:00 自动跑。
+# 只在仓库所有者运行（节省 quota）。
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  smoke:
+    if: github.repository_owner == 'yellowpeach'  # replace with actual owner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -e .[vector]
+      - name: Bootstrap
+        run: .venv/bin/python scripts/bootstrap.py --root .
+      - name: Seed 50-person society
+        run: .venv/bin/python scripts/seed_society_m.py --root . --n 50
+      - name: Run 7-day tick
+        run: .venv/bin/python scripts/simulate_week.py --root . --ticks 7 --budget 0 --archive
+      - name: Dream cycle
+        run: .venv/bin/python scripts/dream_cycle.py --root . --lookback 30
+      - name: Integrity audit
+        run: .venv/bin/python scripts/fix_graph.py --root . --policy report_only
+      - name: Bench 100-scale sqlite_vec
+        run: .venv/bin/python scripts/bench_scale.py --root . --n 1000 --dim 16 --queries 50 --backend sqlite_vec --archive
+      - name: Bench 100-scale faiss
+        run: .venv/bin/python scripts/bench_scale.py --root . --n 1000 --dim 16 --queries 50 --backend faiss --archive
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-bench-${{ github.run_id }}
+          path: |
+            benchmarks/tick_runs/
+            benchmarks/scale/

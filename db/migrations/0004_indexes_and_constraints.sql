@@ -1,0 +1,12 @@
+CREATE UNIQUE INDEX idx_identity_unique ON identity_links(platform, external_id);
+CREATE INDEX idx_identity_person_id ON identity_links(person_id);
+CREATE INDEX idx_relations_core_status ON relations(core_type, status);
+CREATE INDEX idx_group_members_group_status ON group_members(group_id, status);
+CREATE INDEX idx_scene_participants_scene_state ON scene_participants(scene_id, activation_state);
+CREATE INDEX idx_events_timestamp ON events(timestamp);
+CREATE INDEX idx_events_type_timestamp ON events(event_type, timestamp);
+CREATE INDEX idx_memories_shared_status ON memories(is_shared, status);
+CREATE UNIQUE INDEX idx_states_scope_type ON states(scope_type, scope_id, state_type);
+CREATE INDEX idx_raw_evidences_job ON raw_evidences(import_job_id);
+CREATE INDEX idx_patches_source_status ON patches(source_event_id, status);
+CREATE INDEX idx_local_branches_scope_status ON local_branches(scope_type, scope_id, status);

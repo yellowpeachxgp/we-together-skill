@@ -1,0 +1,31 @@
+name: docker
+
+on:
+  pull_request:
+    paths:
+      - "docker/**"
+      - "pyproject.toml"
+      - "src/**"
+      - ".github/workflows/docker.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docker/**"
+      - "pyproject.toml"
+      - "src/**"
+      - ".github/workflows/docker.yml"
+
+jobs:
+  build-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build docker image
+        run: docker build -t we-together:ci -f docker/Dockerfile .
+
+      - name: Smoke — version
+        run: docker run --rm we-together:ci version
+
+      - name: Smoke — help
+        run: docker run --rm we-together:ci

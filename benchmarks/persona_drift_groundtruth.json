@@ -1,0 +1,16 @@
+{
+  "benchmark_name": "persona_drift_v1",
+  "description": "Persona drift：给定事件序列 + 期望画像要点，judge 打分",
+  "cases": [
+    {
+      "case_id": "pd_alice_work_shift",
+      "events": [
+        "Alice 开始接手架构设计",
+        "Alice 主持每周技术评审",
+        "Alice 深夜加班调试性能问题"
+      ],
+      "expected_persona": "主导架构设计并深度投入的技术领导者",
+      "expected_fidelity_min": 0.6
+    }
+  ]
+}

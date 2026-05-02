@@ -1,0 +1,21 @@
+{
+  "benchmark_name": "contradiction_v1",
+  "description": "注入已知矛盾对，验证 contradiction_detector 召回率",
+  "pairs": [
+    {
+      "a": "Alice 昨天去了北京出差",
+      "b": "Alice 昨天一整天都在上海参加会议",
+      "is_contradiction": true
+    },
+    {
+      "a": "Bob 只喝黑咖啡",
+      "b": "Bob 每天早上都喝加糖拿铁",
+      "is_contradiction": true
+    },
+    {
+      "a": "Carol 计划下周去爬山",
+      "b": "Carol 这周末和朋友一起吃了饭",
+      "is_contradiction": false
+    }
+  ]
+}

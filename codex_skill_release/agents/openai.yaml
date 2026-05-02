@@ -1,0 +1,4 @@
+interface:
+  display_name: "we-together-release"
+  short_description: "处理打包、自检、release notes 与发布准备"
+  default_prompt: "使用 $we-together-release 生成或验证 package_skill、release_prep、CHANGELOG、release notes 与 host smoke 证据。"
