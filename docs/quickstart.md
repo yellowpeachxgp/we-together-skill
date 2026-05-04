@@ -14,7 +14,7 @@
 推荐在新电脑上直接执行：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yellowpeachxgp/we-together-skill/main/scripts/install.sh | bash
 ```
 
 安装完成后重启 Codex，然后输入：
@@ -38,7 +38,7 @@ curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/
 ## 2. 手动安装
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 python -m venv .venv
 source .venv/bin/activate

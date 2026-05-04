@@ -38,7 +38,7 @@ def test_zero_config_install_script_has_required_install_stages():
 
 def test_zero_config_install_script_supports_local_file_repo_smoke():
     text = _install_script_text()
-    assert 'WE_TOGETHER_REPO_URL="${WE_TOGETHER_REPO_URL:-https://github.com/yellowpeach/we-together-skill.git}"' in text
+    assert 'WE_TOGETHER_REPO_URL="${WE_TOGETHER_REPO_URL:-https://github.com/yellowpeachxgp/we-together-skill.git}"' in text
     assert 'git clone "$WE_TOGETHER_REPO_URL" "$REPO_DIR"' in text
     assert 'WE_TOGETHER_INSTALL_MODE="${WE_TOGETHER_INSTALL_MODE:-editable}"' in text
 

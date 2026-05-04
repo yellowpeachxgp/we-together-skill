@@ -5,7 +5,7 @@
 新电脑推荐入口：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yellowpeachxgp/we-together-skill/main/scripts/install.sh | bash
 ```
 
 默认安装结果：
@@ -27,7 +27,7 @@ curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/
 ## 2. 手动本地安装
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 python -m venv .venv
 source .venv/bin/activate

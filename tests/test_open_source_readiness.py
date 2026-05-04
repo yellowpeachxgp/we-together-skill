@@ -215,7 +215,7 @@ def test_user_facing_docs_use_current_install_and_cli_commands():
 
     assert "git clone <repo>" not in combined
     assert "pip install we-together-skill" not in combined
-    assert "https://github.com/yellowpeach/we-together-skill" in combined
+    assert "https://github.com/yellowpeachxgp/we-together-skill" in combined
 
     family = (REPO_ROOT / "docs" / "tutorials" / "family_graph.md").read_text(encoding="utf-8")
     assert "--summary" in family

@@ -3,7 +3,7 @@
 `we-together-skill` 的第一次使用流程走这一条：
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 pip install -e .              # 或 pip install we-together
 we-together onboard --root ./mywe   # 交互式引导

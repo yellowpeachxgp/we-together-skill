@@ -3,7 +3,7 @@
 ## 1. 安装 we-together
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill ~/src/we-together
+git clone https://github.com/yellowpeachxgp/we-together-skill ~/src/we-together
 cd ~/src/we-together
 python -m venv .venv && source .venv/bin/activate
 pip install -e .

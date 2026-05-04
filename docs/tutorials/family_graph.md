@@ -7,7 +7,7 @@
 ## 1. 安装和初始化
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 python -m venv .venv
 source .venv/bin/activate

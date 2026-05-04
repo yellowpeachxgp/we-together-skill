@@ -7,7 +7,7 @@
 新电脑推荐入口：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yellowpeachxgp/we-together-skill/main/scripts/install.sh | bash
 ```
 
 它会安装本地 repo、venv、CLI、数据 root、Codex skill family，并写入 Codex MCP server。完成后重启 Codex，直接问：
@@ -26,7 +26,7 @@ curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/
 
 ```bash
 python --version
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 python -m venv .venv
 source .venv/bin/activate

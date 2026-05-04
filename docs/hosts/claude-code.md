@@ -3,7 +3,7 @@
 ## 1. 装 skill
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 python -m venv .venv && source .venv/bin/activate
 pip install -e .

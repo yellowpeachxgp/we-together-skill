@@ -14,7 +14,7 @@
 新增 `scripts/install.sh`，推荐入口：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yellowpeachxgp/we-together-skill/main/scripts/install.sh | bash
 ```
 
 安装器会自动完成：

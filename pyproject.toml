@@ -25,9 +25,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/yellowpeach/we-together-skill"
-Documentation = "https://github.com/yellowpeach/we-together-skill/tree/main/docs"
-Issues = "https://github.com/yellowpeach/we-together-skill/issues"
+Homepage = "https://github.com/yellowpeachxgp/we-together-skill"
+Documentation = "https://github.com/yellowpeachxgp/we-together-skill/tree/main/docs"
+Issues = "https://github.com/yellowpeachxgp/we-together-skill/issues"
 
 [project.scripts]
 we-together = "we_together.cli:main"

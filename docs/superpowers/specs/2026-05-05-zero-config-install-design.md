@@ -30,13 +30,13 @@
 主入口：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yellowpeach/we-together-skill/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yellowpeachxgp/we-together-skill/main/scripts/install.sh | bash
 ```
 
 可覆盖参数：
 
 ```bash
-WE_TOGETHER_REPO_URL=https://github.com/yellowpeach/we-together-skill \
+WE_TOGETHER_REPO_URL=https://github.com/yellowpeachxgp/we-together-skill \
 WE_TOGETHER_HOME="$HOME/.we-together" \
 WE_TOGETHER_CODEX_HOME="$HOME/.codex" \
 bash scripts/install.sh

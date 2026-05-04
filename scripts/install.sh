@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-WE_TOGETHER_REPO_URL="${WE_TOGETHER_REPO_URL:-https://github.com/yellowpeach/we-together-skill.git}"
+WE_TOGETHER_REPO_URL="${WE_TOGETHER_REPO_URL:-https://github.com/yellowpeachxgp/we-together-skill.git}"
 WE_TOGETHER_HOME="${WE_TOGETHER_HOME:-$HOME/.we-together}"
 WE_TOGETHER_CODEX_HOME="${WE_TOGETHER_CODEX_HOME:-$HOME/.codex}"
 WE_TOGETHER_INSTALL_MODE="${WE_TOGETHER_INSTALL_MODE:-editable}"

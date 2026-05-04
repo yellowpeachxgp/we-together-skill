@@ -37,8 +37,8 @@ v0.19.0 本地基线下的 Claude Skills marketplace 上架准备材料（Phase 
   "version": "0.19.0",
   "author": "we-together maintainers",
   "license": "MIT",
-  "repo": "https://github.com/yellowpeach/we-together-skill",
-  "homepage": "https://github.com/yellowpeach/we-together-skill/tree/main/docs",
+  "repo": "https://github.com/yellowpeachxgp/we-together-skill",
+  "homepage": "https://github.com/yellowpeachxgp/we-together-skill/tree/main/docs",
   "categories": ["memory", "social-graph", "agent", "skill-framework"]
 }
 ```

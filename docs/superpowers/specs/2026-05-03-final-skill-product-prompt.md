@@ -356,7 +356,7 @@ Codex skill family 的最终质量标准：
 目标：
 
 ```bash
-git clone https://github.com/yellowpeach/we-together-skill
+git clone https://github.com/yellowpeachxgp/we-together-skill
 cd we-together-skill
 python -m venv .venv
 source .venv/bin/activate
