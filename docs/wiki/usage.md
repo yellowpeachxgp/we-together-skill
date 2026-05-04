@@ -43,7 +43,7 @@ pip install -e .
 期望输出：
 
 ```text
-we-together 0.20.0
+we-together 0.20.1
 ```
 
 ## 3. 初始化 root

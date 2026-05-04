@@ -3,7 +3,7 @@ name: we-together-dev
 description: "Use when the user is explicitly asking about we-together repository development work: current-status, HANDOFF, ADRs, invariants as engineering constraints, test baseline, continuing phases, or continuing implementation work in this repository. 中文强触发示例：we-together 当前状态、we-together 交接文档、继续 we-together 的 Phase、we-together 测试基线。Do not use for graph runtime summary, generic imports, or unrelated repositories."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.20.0"
+version: "0.20.1"
 ---
 
 > **语言**：用户说中文时，全程用中文。

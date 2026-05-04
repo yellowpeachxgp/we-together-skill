@@ -2,7 +2,7 @@
 
 > **对象**：Codex（或任一继任 AI assistant）
 > **目标**：读完本文档 + [`docs/superpowers/state/current-status.md`](superpowers/state/current-status.md) 后 **5 分钟**内回到工作状态。
-> **当前版本**：**v0.20.0** — zero-config installer 发布基线，目标是一键安装到新电脑可用。
+> **当前版本**：**v0.20.1** — zero-config installer + 人工 E2E CLI surface 补丁基线，目标是一键安装到新电脑可用。
 > **代码事实补丁（2026-04-29）**：当前代码自审为 **73 ADR / 28 条不变式 / 21 migrations / 84 services / 76 scripts**；28 条不变式全部有测试覆盖；本地已起步 **Phase 72：矛盾复核 / operator-gated unmerge**，并已把 **Codex native skill family** 扩展为 **7 个本地 skill**（router + `dev/runtime/ingest/world/simulation/release`）。WebUI 现已默认走 local skill bridge，浏览器不再默认持有 WebUI token。
 > **post-v0.19 local cockpit 补丁（2026-05-03）**：WebUI bridge 已扩展为本地 cockpit API，默认读取真实 graph / activity / world / branch review，并支持 WebUI 内 bootstrap、seed-demo、narration import、branch resolve；默认生产路径不静默注入 demo，demo 只在 `?demo=1` 或 `localStorage.we_together_demo_mode=1` 时启用。
 > **strict gate 补丁（2026-05-03）**：`.venv/bin/python scripts/release_strict_e2e.py --profile strict` 覆盖 CLI first-run、tenant isolation、fresh MCP stdio、WebUI curl、package verify、Codex skill family validate 与 focused pytest。Fresh MCP `snapshot_list` 已通过；长驻旧 MCP 进程若仍报 `no such column: scene_id`，重启 MCP 后复测。
@@ -23,14 +23,14 @@
 
 ---
 
-## 1. 项目当前状态（v0.20.0 zero-config installer 收口后）
+## 1. 项目当前状态（v0.20.1 zero-config installer + E2E 补丁后）
 
 | 项 | 值 |
 |---|---|
-| git tag | `v0.20.0` |
+| git tag | `v0.20.1` |
 | GitHub remote | `https://github.com/yellowpeachxgp/we-together-skill` |
-| pyproject version | `0.20.0` |
-| cli VERSION | `0.20.0` |
+| pyproject version | `0.20.1` |
+| cli VERSION | `0.20.1` |
 | pytest 基线 | **863 passed + 4 skipped**，~39s 本机 |
 | ADR 总数 | 73（`docs/superpowers/decisions/0001-0073`）|
 | 不变式 | **28 条**（`src/we_together/invariants.py`）|
@@ -44,7 +44,7 @@ cd we-together-skill
 .venv/bin/python -m pytest -q         # 期望 863 passed, 4 skipped
 .venv/bin/python scripts/self_audit.py        # 整体自描述
 .venv/bin/python scripts/invariants_check.py summary  # 28 条不变式 100% 覆盖
-.venv/bin/we-together version         # we-together 0.20.0
+.venv/bin/we-together version         # we-together 0.20.1
 .venv/bin/python scripts/install_codex_skill.py --family --force --configure-mcp --mcp-root ./data --python-bin "$PWD/.venv/bin/python"
 .venv/bin/python scripts/validate_codex_skill.py --installed --family --skill-dir ~/.codex/skills
 .venv/bin/python scripts/capture_codex_skill_evidence.py --session-root ~/.codex/sessions --limit 20
@@ -108,7 +108,7 @@ cd we-together-skill
 we-together-skill/
 ├── src/we_together/
 │   ├── __init__.py
-│   ├── cli.py                  # VERSION = "0.20.0"，CLI 入口
+│   ├── cli.py                  # VERSION = "0.20.1"，CLI 入口
 │   ├── invariants.py           # 28 条不变式注册表（以代码为准）
 │   ├── agents/                 # PersonAgent + turn_taking（v0.13）
 │   ├── db/
@@ -337,7 +337,7 @@ we-together-skill/
 cd /Users/yellowpeachmac/mac-code/mac-code/we-together-skill
 git status                                     # clean
 git log --oneline | head -5                    # 看最近 5 commits
-git tag -l | tail -5                           # 确认 v0.20.0 已 tag
+git tag -l | tail -5                           # 确认 v0.20.1 已 tag
 
 # 2. 确认测试绿
 .venv/bin/python -m pytest -q                  # 期望 863 passed, 4 skipped
@@ -404,7 +404,7 @@ seed_society_c(Path('/tmp/wt_year_test'))"
 | 自修复 | `scripts/fix_graph.py --policy propose` |
 | 审计 integrity | `scripts/fix_graph.py --policy report_only` |
 | Rollback tick | `scripts/rollback_tick.py --snapshot snap_tick_N_...` |
-| Release 自检 | `scripts/release_prep.py --version 0.20.0` |
+| Release 自检 | `scripts/release_prep.py --version 0.20.1` |
 
 ---
 

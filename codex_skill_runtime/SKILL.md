@@ -3,7 +3,7 @@ name: we-together-runtime
 description: "Use when the user is explicitly asking about the we-together runtime graph state: graph summary, invariants, invariant detail, self-describe, tenant state, or scene/memory/relation metadata in the we-together project. 中文强触发示例：we-together 图谱摘要、we-together 不变式、we-together 某条不变式、we-together 自描述。Do not use for continuing development phases, generic repository work, or unrelated social graph discussions."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.20.0"
+version: "0.20.1"
 ---
 
 > **语言**：用户说中文时，全程用中文。

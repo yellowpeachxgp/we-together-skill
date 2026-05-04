@@ -1,6 +1,6 @@
 # we-together Getting Started
 
-从零到第一次 `run_turn` 的本地路径。当前基线为 v0.20.0。
+从零到第一次 `run_turn` 的本地路径。当前基线为 v0.20.1。
 
 ## 0. 一键安装
 
@@ -46,7 +46,7 @@ pip install -e .
 .venv/bin/we-together bootstrap --root .
 ```
 
-这会在 `db/main.sqlite3` 应用当前 migrations。v0.20.0 代码事实为 21 条 migrations。
+这会在 `db/main.sqlite3` 应用当前 migrations。v0.20.1 代码事实为 21 条 migrations。
 
 ## 3. 安装一个示例社会
 

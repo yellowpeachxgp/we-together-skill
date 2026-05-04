@@ -8,6 +8,8 @@
   seed-demo        灌入 Society C demo 数据
   create-scene     创建一个 scene
   build-pkg        构建 runtime_retrieval_package
+  import-narration 导入口述/叙事文本
+  import-auto      自动判别并导入文本
   dialogue-turn    一次端到端对话轮次
   snapshot         snapshot 子命令（list/rollback/replay）
   daily-maint      跑 daily_maintenance 编排
@@ -27,7 +29,7 @@ import runpy
 import sys
 from pathlib import Path
 
-VERSION = "0.20.0"
+VERSION = "0.20.1"
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS_DIR = ROOT / "scripts"
@@ -38,6 +40,12 @@ SCRIPT_MAP = {
     "seed-demo": "seed_demo.py",
     "create-scene": "create_scene.py",
     "build-pkg": "build_retrieval_package.py",
+    "import-narration": "import_narration.py",
+    "import-text-chat": "import_text_chat.py",
+    "import-email-file": "import_email_file.py",
+    "import-file-auto": "import_file_auto.py",
+    "import-directory": "import_directory.py",
+    "import-auto": "import_auto.py",
     "dialogue-turn": "dialogue_turn.py",
     "snapshot": "snapshot.py",
     "daily-maint": "daily_maintenance.py",

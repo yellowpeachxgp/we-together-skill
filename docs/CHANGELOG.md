@@ -2,6 +2,13 @@
 
 本 CHANGELOG 记录 we-together-skill 的阶段性里程碑。
 
+## v0.20.1 — 2026-05-05
+
+- 人工端到端验收补丁：统一 CLI 现在暴露 `import-narration`、`import-text-chat`、`import-email-file`、`import-file-auto`、`import-directory`、`import-auto`，让文档中的导入路径可直接通过 `.venv/bin/we-together ...` 执行。
+- `snapshot` CLI 兼容 `we-together snapshot list --root <root>` 这类文档顺序；`rollback` / `replay` 也兼容子命令后的 `--root` / `--tenant-id`。
+- 新增回归测试覆盖上述 CLI surface，避免 strict gate 通过但人工 Quickstart 命令失败。
+- 本轮人工 E2E 覆盖：公开远端一键安装 + 重复安装、Codex skill family、MCP、CLI import/dialogue/snapshot/tenant、WebUI local bridge、WebUI unit/build/visual、strict release gate。
+
 ## v0.20.0 — 2026-05-05
 
 - 新增 `scripts/install.sh` 作为新电脑一键安装入口：克隆/更新 repo、创建 `~/.we-together/venv`、安装 CLI、bootstrap `~/.we-together/data`、安装 Codex skill family、写入 Codex MCP server、执行安装后验收。

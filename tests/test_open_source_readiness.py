@@ -179,15 +179,20 @@ def test_release_notes_distinguish_historical_entries_from_current_code_truth():
     v018 = (REPO_ROOT / "docs" / "release_notes_v0.18.0.md").read_text(encoding="utf-8")
     v019 = (REPO_ROOT / "docs" / "release_notes_v0.19.0.md").read_text(encoding="utf-8")
     v020 = (REPO_ROOT / "docs" / "release_notes_v0.20.0.md").read_text(encoding="utf-8")
+    v0201 = (REPO_ROOT / "docs" / "release_notes_v0.20.1.md").read_text(encoding="utf-8")
 
     assert "## v0.18.0" in changelog
     assert "## v0.20.0" in changelog
+    assert "## v0.20.1" in changelog
     assert "当前代码注册表为 28 条不变式" in v018
     assert "#29/#30" in v018 and "治理检查" in v018
     assert "docs/superpowers/state/current-status.md" in v019
     assert "853 passed, 4 skipped" in v019
     assert "zero-config installer" in v020
     assert "863 passed, 4 skipped" in v020
+    assert "人工端到端验收补丁" in v0201
+    assert "import-narration" in v0201
+    assert "snapshot list --root" in v0201
 
 
 def test_readme_is_current_product_entrypoint_not_archived_phase_log():

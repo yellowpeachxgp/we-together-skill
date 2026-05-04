@@ -1,6 +1,6 @@
 # Architecture Overview
 
-> 当前架构基线：v0.20.0。更面向使用者的说明见 [Wiki 架构总览](../wiki/architecture.md)。
+> 当前架构基线：v0.20.1。更面向使用者的说明见 [Wiki 架构总览](../wiki/architecture.md)。
 
 ## 一句话架构
 
@@ -93,7 +93,7 @@ we-together webui --root <root>
 
 来自 `scripts/self_audit.py`：
 
-- version: `0.20.0`
+- version: `0.20.1`
 - ADR: 73
 - invariants: 28 / covered 28
 - migrations: 21

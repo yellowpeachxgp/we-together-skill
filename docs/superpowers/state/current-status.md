@@ -11,6 +11,14 @@
 > - 参考进度：[`docs/superpowers/state/2026-04-22-phase-65-70-progress.md`](2026-04-22-phase-65-70-progress.md)
 > - 参考排序：[`docs/superpowers/state/2026-04-23-v0-20-candidate-ordering.md`](2026-04-23-v0-20-candidate-ordering.md)
 
+## 2026-05-05 v0.20.1 人工 E2E 补丁
+
+- 当前版本推进到 `0.20.1`，补齐人工验收中发现的统一 CLI surface 缺口。
+- `we-together import-narration` / `import-text-chat` / `import-email-file` / `import-file-auto` / `import-directory` / `import-auto` 现已从 `src/we_together/cli.py` 暴露。
+- `we-together snapshot list --root <root>` 已兼容文档里的参数顺序；`rollback` / `replay` 同步支持子命令后的 `--root` / `--tenant-id`。
+- 回归测试：`tests/runtime/test_webui_cli.py` 覆盖导入子命令映射和 snapshot 参数顺序。
+- 本轮已执行人工端到端路径：公开远端一键安装 + 重复安装、Codex skill family、MCP、CLI import/dialogue/snapshot/tenant、WebUI local bridge、WebUI unit/build/visual、strict release gate。
+
 ## 2026-05-03 final skill product / strict gate 补丁
 
 - `scripts/release_strict_e2e.py --profile strict` 已成为当前 release 前严格门禁，覆盖 CLI first-run、tenant isolation、fresh MCP stdio、WebUI local bridge curl、package verify、Codex skill family validate 与 focused pytest。
@@ -18,7 +26,7 @@
 - WebUI 默认生产路径现在是 honest local runtime：local bridge 不可用或本地库为空时展示离线/空状态，不静默注入 demo graph。视觉开发 demo 需显式使用 URL `?demo=1` 或 `localStorage.we_together_demo_mode=1`。
 - WebUI graph cockpit 已覆盖 person / relation / memory / group / scene / state / object / place / project；world cockpit 已覆盖 participants / objects / places / projects / agent_drives / autonomous_actions。
 - Operator Review 的 resolve 操作已支持 operator note，并把 note 作为 branch resolve `reason` 写入 patch payload。
-- 最新 self-audit 代码事实：`version=0.20.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
+- 最新 self-audit 代码事实：`version=0.20.1`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
 
 ## 2026-05-05 zero-config install 补丁
 
@@ -26,16 +34,16 @@
 - `scripts/install_codex_skill.py` 新增 `--configure-mcp` / `--config-path` / `--mcp-root` / `--python-bin` / `--force-mcp`，可在安装 skill family 时幂等写入 `~/.codex/config.toml`。
 - MCP 配置写入由 `codex_skill_support.upsert_codex_mcp_server_config()` 负责，使用 managed block；重复执行会替换同名托管 block，不会重复追加。
 - 零配置边界已写入 README / Quickstart / Getting Started / Codex host doc / Wiki usage：脚本要求系统已有 `python3 >= 3.11` 和 `git`，不会自动安装系统包管理器、Python 或 Codex 本体。
-- GitHub 发布入口已切到公开仓库 `https://github.com/yellowpeachxgp/we-together-skill`；`main` 与 `v0.20.0` tag 是本版远端发布基线，GitHub Release 使用 `docs/release_notes_v0.20.0.md`。
+- GitHub 发布入口已切到公开仓库 `https://github.com/yellowpeachxgp/we-together-skill`；`main` 与当前最新 tag 是远端发布基线。
 
 ## 2026-04-29 文档 / WebUI local runtime 补丁
 
 - `docs/wiki/` 已新增为当前稳定 Wiki 入口，覆盖架构、使用方法、能力边界和交互流程。
-- `docs/index.md`、`docs/quickstart.md`、`docs/getting-started.md`、`docs/architecture/overview.md`、`docs/FAQ.md` 已同步到 v0.20.0 事实基线。
+- `docs/index.md`、`docs/quickstart.md`、`docs/getting-started.md`、`docs/architecture/overview.md`、`docs/FAQ.md` 已同步到 v0.20.1 事实基线。
 - WebUI 默认通道已改为 local skill bridge：浏览器无 WebUI token 时通过 `/api/chat/run-turn` 调用本地 `scripts/webui_host.py`，bridge 再调用 `chat_service.run_turn()`。
 - WebUI no-token 模式现在会从本地 `/api/scenes` 读取 active scenes；当前 root 没有 scene 时提示先 bootstrap + seed-demo 或导入材料，不再静默发送静态 demo scene id。
 - `scripts/webui_host.py` 暴露只读 `/api/scenes` 和 `/api/summary`；图谱写入仍集中在 `chat_service.run_turn()`。
-- 最新 self-audit 代码事实：`version=0.20.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
+- 最新 self-audit 代码事实：`version=0.20.1`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
 
 ## 2026-05-03 post-v0.19 local cockpit 推进
 
@@ -60,7 +68,7 @@
 - `unmerge_gate.py --tenant-id` 已有回归测试；非 active target 会走明确失败出口
 - `resolve_local_branch` 对带 `effect_patches` 的 candidate 现在先跑子 effect，再回写 parent branch；子 effect 失败时 branch 保持 `open`
 - `unmerge_gate_service` 现在会把输入 `confidence` clamp 到 `[0,1]`，避免异常值把 operator gate 的候选排序带偏
-- `package_skill.py pack` 不传版本参数时，现已自动推导当前 `skill_version=0.20.0` 与 `schema_version=0021`
+- `package_skill.py pack` 不传版本参数时，现已自动推导当前 `skill_version=0.20.1` 与 `schema_version=0021`
 - `we_together.__version__` 现已与 CLI `VERSION` 对齐
 - 本机已新增 `codex_skill/` 原生技能包，以及 `scripts/install_codex_skill.py` / `scripts/update_codex_skill.py` / `scripts/validate_codex_skill.py` / `scripts/capture_codex_skill_evidence.py`
 - 本机已把 Codex native skill 扩展为 7 个技能：`we-together`（router）/ `we-together-dev` / `we-together-runtime` / `we-together-ingest` / `we-together-world` / `we-together-simulation` / `we-together-release`

@@ -12,21 +12,27 @@ from we_together.services.snapshot_service import list_snapshots, replay_patches
 from we_together.services.tenant_router import resolve_tenant_root
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="List or rollback snapshots")
     parser.add_argument("--root", default=str(ROOT), help="Project root")
     parser.add_argument("--tenant-id", default=None)
     sub = parser.add_subparsers(dest="command")
 
-    sub.add_parser("list", help="List all snapshots")
+    list_parser = sub.add_parser("list", help="List all snapshots")
+    list_parser.add_argument("--root", default=argparse.SUPPRESS, help="Project root")
+    list_parser.add_argument("--tenant-id", default=argparse.SUPPRESS)
 
     rb = sub.add_parser("rollback", help="Rollback to a snapshot")
     rb.add_argument("--snapshot-id", required=True)
+    rb.add_argument("--root", default=argparse.SUPPRESS, help="Project root")
+    rb.add_argument("--tenant-id", default=argparse.SUPPRESS)
 
     rp = sub.add_parser("replay", help="Replay rolled-back patches after a snapshot")
     rp.add_argument("--snapshot-id", required=True)
+    rp.add_argument("--root", default=argparse.SUPPRESS, help="Project root")
+    rp.add_argument("--tenant-id", default=argparse.SUPPRESS)
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     tenant_root = resolve_tenant_root(Path(args.root), args.tenant_id)
     db_path = tenant_root / "db" / "main.sqlite3"
 

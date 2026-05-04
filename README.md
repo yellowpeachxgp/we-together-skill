@@ -14,7 +14,7 @@
 
 ## 当前状态
 
-当前本地基线是 `we-together 0.20.0`。项目已经具备可运行的 Skill 产品主路径：
+当前本地基线是 `we-together 0.20.1`。项目已经具备可运行的 Skill 产品主路径：
 
 - CLI：bootstrap、seed/import、chat、dialogue-turn、snapshot、graph-summary、maintenance、simulation。
 - MCP：self-describe、invariants、graph summary、scene、snapshot、import、run-turn 等本地验证工具。
@@ -168,7 +168,7 @@ git diff --check
 
 - 本地 Skill、CLI、MCP、WebUI cockpit 是当前主产品路径。
 - 真实 provider 的 7/30/365 天长跑质量仍依赖外部 key、成本和运行环境。
-- GitHub Release `v0.20.0` 是当前公开发布入口；PyPI 是否已经发布仍以实际包索引状态为准。
+- GitHub Release `v0.20.1` 是当前公开发布入口；PyPI 是否已经发布仍以实际包索引状态为准。
 - 托管 SaaS、多用户计费、商业 SLA 和第三方安全审计不在当前本地开源包完成声明内。
 
 ## 文档入口

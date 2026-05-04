@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "we-together"
-version = "0.20.0"
+version = "0.20.1"
 description = "Skill-first social graph runtime — build and run a small digital society (scenes, events, memories, relations) that evolves over time."
 readme = "README.md"
 requires-python = ">=3.11"
