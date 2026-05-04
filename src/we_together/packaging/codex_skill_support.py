@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import tomllib
 from pathlib import Path
@@ -20,6 +21,8 @@ DEFAULT_CODEX_SKILL_FAMILY = {
     "we-together-simulation": "codex_skill_simulation",
     "we-together-release": "codex_skill_release",
 }
+MANAGED_MCP_BLOCK_PREFIX = "# BEGIN we-together managed MCP server:"
+MANAGED_MCP_BLOCK_SUFFIX = "# END we-together managed MCP server:"
 
 REQUIRED_SOURCE_FILES = [
     "SKILL.md",
@@ -211,6 +214,113 @@ def codex_config_has_mcp_server(config_path: Path, server_name: str) -> bool:
     if any(needle in text for needle in needles):
         return True
     return f'"mcpServers"' in text and f'"{server_name}"' in text
+
+
+def _toml_quote(value: Path | str) -> str:
+    return json.dumps(str(value), ensure_ascii=False)
+
+
+def build_codex_mcp_server_block(
+    *,
+    server_name: str,
+    python_bin: Path,
+    repo_root: Path,
+    data_root: Path,
+) -> str:
+    repo_root = Path(repo_root).expanduser().resolve()
+    python_bin = Path(python_bin).expanduser()
+    data_root = Path(data_root).expanduser()
+    mcp_script = repo_root / "scripts" / "mcp_server.py"
+    args = [
+        _toml_quote(mcp_script),
+        _toml_quote("--root"),
+        _toml_quote(data_root),
+    ]
+    return "\n".join(
+        [
+            f"{MANAGED_MCP_BLOCK_PREFIX} {server_name}",
+            f"[mcp_servers.{server_name}]",
+            f"command = {_toml_quote(python_bin)}",
+            f"args = [{', '.join(args)}]",
+            f"{MANAGED_MCP_BLOCK_SUFFIX} {server_name}",
+            "",
+        ]
+    )
+
+
+def _managed_mcp_block_pattern(server_name: str) -> re.Pattern[str]:
+    escaped = re.escape(server_name)
+    return re.compile(
+        rf"(?ms)^# BEGIN we-together managed MCP server: {escaped}\n"
+        rf".*?"
+        rf"^# END we-together managed MCP server: {escaped}\n?",
+    )
+
+
+def _unmanaged_mcp_block_pattern(server_name: str) -> re.Pattern[str]:
+    escaped = re.escape(server_name)
+    return re.compile(
+        rf"(?ms)^(\[mcp_servers\.{escaped}\]\n.*?)(?=^\[|\Z)",
+    )
+
+
+def upsert_codex_mcp_server_config(
+    config_path: Path,
+    *,
+    server_name: str = DEFAULT_MCP_SERVER_NAME,
+    python_bin: Path,
+    repo_root: Path,
+    data_root: Path,
+    force_mcp: bool = False,
+) -> dict:
+    config_path = Path(config_path).expanduser().resolve()
+    block = build_codex_mcp_server_block(
+        server_name=server_name,
+        python_bin=python_bin,
+        repo_root=repo_root,
+        data_root=data_root,
+    )
+    original = ""
+    if config_path.exists():
+        original = config_path.read_text(encoding="utf-8")
+
+    managed_pattern = _managed_mcp_block_pattern(server_name)
+    if managed_pattern.search(original):
+        updated = managed_pattern.sub(block.rstrip("\n") + "\n", original)
+        action = "replaced"
+    else:
+        unmanaged_pattern = _unmanaged_mcp_block_pattern(server_name)
+        if unmanaged_pattern.search(original):
+            if not force_mcp:
+                return {
+                    "ok": False,
+                    "action": "conflict",
+                    "config_path": str(config_path),
+                    "mcp_server_name": server_name,
+                    "message": (
+                        "existing unmanaged MCP server config found; rerun with "
+                        "force_mcp=True or --force-mcp to replace it"
+                    ),
+                }
+            updated = unmanaged_pattern.sub(block.rstrip("\n") + "\n", original)
+            action = "replaced_unmanaged"
+        else:
+            separator = "\n" if original and not original.endswith("\n") else ""
+            prefix = "\n" if original.strip() else ""
+            updated = f"{original}{separator}{prefix}{block}"
+            action = "inserted"
+
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    config_path.write_text(updated, encoding="utf-8")
+    return {
+        "ok": True,
+        "action": action,
+        "config_path": str(config_path),
+        "mcp_server_name": server_name,
+        "python_bin": str(Path(python_bin).expanduser()),
+        "repo_root": str(Path(repo_root).expanduser().resolve()),
+        "data_root": str(Path(data_root).expanduser()),
+    }
 
 
 def install_codex_skill(

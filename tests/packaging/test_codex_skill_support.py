@@ -5,11 +5,13 @@ from pathlib import Path
 
 from we_together.packaging.codex_skill_support import (
     DEFAULT_CODEX_SKILL_FAMILY,
+    build_codex_mcp_server_block,
     codex_config_has_mcp_server,
     default_codex_skill_target,
     discover_codex_skill_family_sources,
     install_codex_skill,
     install_codex_skill_family,
+    upsert_codex_mcp_server_config,
     validate_codex_skill_family,
     validate_codex_skill_tree,
 )
@@ -186,6 +188,122 @@ def test_codex_config_has_mcp_server(tmp_path):
     assert codex_config_has_mcp_server(config, "missing-server") is False
 
 
+def test_build_codex_mcp_server_block_uses_absolute_runtime_paths(tmp_path):
+    python_bin = tmp_path / "venv" / "bin" / "python"
+    repo_root = tmp_path / "repo"
+    data_root = tmp_path / "data"
+
+    block = build_codex_mcp_server_block(
+        server_name="we-together-local-validate",
+        python_bin=python_bin,
+        repo_root=repo_root,
+        data_root=data_root,
+    )
+
+    assert "# BEGIN we-together managed MCP server: we-together-local-validate" in block
+    assert "[mcp_servers.we-together-local-validate]" in block
+    assert f'command = "{python_bin}"' in block
+    assert (
+        f'args = ["{repo_root / "scripts" / "mcp_server.py"}", '
+        f'"--root", "{data_root}"]'
+    ) in block
+    assert "# END we-together managed MCP server: we-together-local-validate" in block
+
+
+def test_upsert_codex_mcp_server_config_creates_managed_block(tmp_path):
+    config_path = tmp_path / ".codex" / "config.toml"
+
+    report = upsert_codex_mcp_server_config(
+        config_path,
+        server_name="we-together-local-validate",
+        python_bin=tmp_path / "venv" / "bin" / "python",
+        repo_root=tmp_path / "repo",
+        data_root=tmp_path / "data",
+    )
+
+    assert report["ok"] is True
+    assert report["action"] == "inserted"
+    text = config_path.read_text(encoding="utf-8")
+    assert text.count("BEGIN we-together managed MCP server") == 1
+    assert "[mcp_servers.we-together-local-validate]" in text
+    assert codex_config_has_mcp_server(
+        config_path,
+        "we-together-local-validate",
+    )
+
+
+def test_upsert_codex_mcp_server_config_replaces_existing_managed_block(tmp_path):
+    config_path = tmp_path / "config.toml"
+    first = upsert_codex_mcp_server_config(
+        config_path,
+        server_name="we-together-local-validate",
+        python_bin=tmp_path / "venv-a" / "bin" / "python",
+        repo_root=tmp_path / "repo-a",
+        data_root=tmp_path / "data-a",
+    )
+    second = upsert_codex_mcp_server_config(
+        config_path,
+        server_name="we-together-local-validate",
+        python_bin=tmp_path / "venv-b" / "bin" / "python",
+        repo_root=tmp_path / "repo-b",
+        data_root=tmp_path / "data-b",
+    )
+
+    assert first["action"] == "inserted"
+    assert second["action"] == "replaced"
+    text = config_path.read_text(encoding="utf-8")
+    assert text.count("BEGIN we-together managed MCP server") == 1
+    assert "repo-a" not in text
+    assert "repo-b" in text
+
+
+def test_upsert_codex_mcp_server_config_refuses_unmanaged_same_name(tmp_path):
+    config_path = tmp_path / "config.toml"
+    config_path.write_text(
+        '[mcp_servers.we-together-local-validate]\ncommand = "python3"\n',
+        encoding="utf-8",
+    )
+
+    report = upsert_codex_mcp_server_config(
+        config_path,
+        server_name="we-together-local-validate",
+        python_bin=tmp_path / "venv" / "bin" / "python",
+        repo_root=tmp_path / "repo",
+        data_root=tmp_path / "data",
+    )
+
+    assert report["ok"] is False
+    assert report["action"] == "conflict"
+    assert "force_mcp" in report["message"]
+    text = config_path.read_text(encoding="utf-8")
+    assert text.count("[mcp_servers.we-together-local-validate]") == 1
+    assert "BEGIN we-together managed MCP server" not in text
+
+
+def test_upsert_codex_mcp_server_config_force_replaces_unmanaged_same_name(tmp_path):
+    config_path = tmp_path / "config.toml"
+    config_path.write_text(
+        '[mcp_servers.we-together-local-validate]\ncommand = "python3"\n',
+        encoding="utf-8",
+    )
+
+    report = upsert_codex_mcp_server_config(
+        config_path,
+        server_name="we-together-local-validate",
+        python_bin=tmp_path / "venv" / "bin" / "python",
+        repo_root=tmp_path / "repo",
+        data_root=tmp_path / "data",
+        force_mcp=True,
+    )
+
+    assert report["ok"] is True
+    assert report["action"] == "replaced_unmanaged"
+    text = config_path.read_text(encoding="utf-8")
+    assert text.count("[mcp_servers.we-together-local-validate]") == 1
+    assert "BEGIN we-together managed MCP server" in text
+    assert 'command = "python3"' not in text
+
+
 def test_discover_codex_skill_family_sources(tmp_path):
     repo_root = _make_source_skill_family(tmp_path)
     family = discover_codex_skill_family_sources(repo_root)
@@ -289,6 +407,46 @@ def test_install_codex_skill_cli_family_dry_run_reports_all_skills(
     assert set(report["skills"]) == set(DEFAULT_CODEX_SKILL_FAMILY)
     assert report["missing_sources"] == []
     assert len(report["reports"]) == len(DEFAULT_CODEX_SKILL_FAMILY)
+
+
+def test_install_codex_skill_cli_family_configures_mcp(
+    tmp_path,
+    monkeypatch,
+    capsys,
+):
+    install_codex_skill_script = _load_install_codex_skill()
+    repo_root = _make_source_skill_family(tmp_path)
+    config_path = tmp_path / ".codex" / "config.toml"
+    data_root = tmp_path / "data"
+    python_bin = tmp_path / "venv" / "bin" / "python"
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "install_codex_skill.py",
+            "--repo-root",
+            str(repo_root),
+            "--family",
+            "--force",
+            "--target-dir",
+            str(tmp_path / "skills"),
+            "--configure-mcp",
+            "--config-path",
+            str(config_path),
+            "--mcp-root",
+            str(data_root),
+            "--python-bin",
+            str(python_bin),
+        ],
+    )
+
+    assert install_codex_skill_script.main() == 0
+    report = json.loads(capsys.readouterr().out)
+    assert report["ok"] is True
+    assert report["mcp_config"]["ok"] is True
+    assert report["mcp_config"]["action"] == "inserted"
+    assert codex_config_has_mcp_server(config_path, "we-together-local-validate")
 
 
 def test_update_codex_skill_cli_invokes_force_install(monkeypatch):

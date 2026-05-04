@@ -14,6 +14,7 @@ from we_together.packaging.codex_skill_support import (
     default_codex_skill_target,
     install_codex_skill_family,
     install_codex_skill,
+    upsert_codex_mcp_server_config,
 )
 
 
@@ -94,6 +95,31 @@ def main() -> int:
         help="MCP server name written into generated local-runtime references",
     )
     parser.add_argument(
+        "--configure-mcp",
+        action="store_true",
+        help="Write or update the Codex MCP server block in config.toml",
+    )
+    parser.add_argument(
+        "--config-path",
+        default=str(Path.home() / ".codex" / "config.toml"),
+        help="Codex config.toml path used when --configure-mcp is set",
+    )
+    parser.add_argument(
+        "--mcp-root",
+        default=None,
+        help="Runtime data root passed to scripts/mcp_server.py; defaults to --repo-root",
+    )
+    parser.add_argument(
+        "--python-bin",
+        default=sys.executable,
+        help="Python executable used by the configured MCP server",
+    )
+    parser.add_argument(
+        "--force-mcp",
+        action="store_true",
+        help="Replace an existing unmanaged MCP server block with the same name",
+    )
+    parser.add_argument(
         "--family",
         action="store_true",
         help="Install the router plus dev/runtime/ingest sub-skills into the target skills directory",
@@ -164,6 +190,35 @@ def main() -> int:
             force=args.force,
             dry_run=args.dry_run,
         )
+    if args.configure_mcp:
+        if args.dry_run:
+            mcp_report = {
+                "ok": True,
+                "action": "dry-run",
+                "config_path": str(Path(args.config_path).expanduser().resolve()),
+                "mcp_server_name": mcp_server_name,
+                "python_bin": str(Path(args.python_bin).expanduser()),
+                "repo_root": str(repo_root),
+                "data_root": str(
+                    _resolve_optional_path(args.mcp_root, default_path=repo_root)
+                ),
+            }
+        else:
+            mcp_report = upsert_codex_mcp_server_config(
+                Path(args.config_path),
+                server_name=mcp_server_name,
+                python_bin=Path(args.python_bin),
+                repo_root=repo_root,
+                data_root=_resolve_optional_path(args.mcp_root, default_path=repo_root),
+                force_mcp=args.force_mcp,
+            )
+        payload["mcp_config"] = mcp_report
+        payload["ok"] = bool(payload["ok"] and mcp_report["ok"])
+    else:
+        payload["mcp_config"] = {
+            "ok": None,
+            "action": "not-requested",
+        }
     print(json.dumps(payload, ensure_ascii=False, indent=2))
     return 0 if payload["ok"] else 1
 

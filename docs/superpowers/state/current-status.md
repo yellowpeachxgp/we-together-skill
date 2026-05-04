@@ -20,6 +20,13 @@
 - Operator Review 的 resolve 操作已支持 operator note，并把 note 作为 branch resolve `reason` 写入 patch payload。
 - 最新 self-audit 代码事实：`version=0.19.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
 
+## 2026-05-05 zero-config install 补丁
+
+- 新增 `scripts/install.sh` 作为新电脑一键安装入口：克隆/更新 repo、创建 `~/.we-together/venv`、安装 CLI、bootstrap `~/.we-together/data`、安装 Codex skill family、写入 Codex MCP server、执行安装后验收。
+- `scripts/install_codex_skill.py` 新增 `--configure-mcp` / `--config-path` / `--mcp-root` / `--python-bin` / `--force-mcp`，可在安装 skill family 时幂等写入 `~/.codex/config.toml`。
+- MCP 配置写入由 `codex_skill_support.upsert_codex_mcp_server_config()` 负责，使用 managed block；重复执行会替换同名托管 block，不会重复追加。
+- 零配置边界已写入 README / Quickstart / Getting Started / Codex host doc / Wiki usage：脚本要求系统已有 `python3 >= 3.11` 和 `git`，不会自动安装系统包管理器、Python 或 Codex 本体。
+
 ## 2026-04-29 文档 / WebUI local runtime 补丁
 
 - `docs/wiki/` 已新增为当前稳定 Wiki 入口，覆盖架构、使用方法、能力边界和交互流程。

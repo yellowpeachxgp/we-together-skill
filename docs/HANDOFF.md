@@ -44,7 +44,7 @@ cd we-together-skill
 .venv/bin/python scripts/self_audit.py        # 整体自描述
 .venv/bin/python scripts/invariants_check.py summary  # 28 条不变式 100% 覆盖
 .venv/bin/we-together version         # we-together 0.19.0
-.venv/bin/python scripts/install_codex_skill.py --family --force
+.venv/bin/python scripts/install_codex_skill.py --family --force --configure-mcp --mcp-root ./data --python-bin "$PWD/.venv/bin/python"
 .venv/bin/python scripts/validate_codex_skill.py --installed --family --skill-dir ~/.codex/skills
 .venv/bin/python scripts/capture_codex_skill_evidence.py --session-root ~/.codex/sessions --limit 20
 ```

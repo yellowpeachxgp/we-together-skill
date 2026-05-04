@@ -11,7 +11,7 @@
 | Scene-grounded retrieval | 可用，包含 participants、relations、memories、states、recent_changes | `we-together build-pkg --root <root> --scene-id <id>` |
 | 一轮对话演化 | 可用，输出 event / snapshot / patch | `we-together chat ...`、`dialogue-turn --user-input ... --response-text ...` 或 WebUI |
 | WebUI 本地 cockpit | 可用，默认 local skill bridge；真实 graph/activity/world/review/import/chat，无 WebUI token | `we-together webui --root <root>` |
-| Codex native skill family | 可用，7 个 skill | `scripts/install_codex_skill.py --family --force` |
+| Codex native skill family | 可用，7 个 skill；一键安装会自动安装并配置 MCP | `scripts/install.sh` 或 `scripts/install_codex_skill.py --family --force --configure-mcp ...` |
 | MCP 工具入口 | 可用，run_turn / summary / scene list / import / proactive scan 等 | `we-together mcp-server --root <root>` |
 | 导入文本材料 | narration / text chat / email / directory / auto import 可用 | `scripts/import_*.py` |
 | 图谱摘要与时间线 | 可用 | `graph-summary`, `timeline`, `relation-timeline` |
