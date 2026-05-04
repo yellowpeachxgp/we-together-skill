@@ -1,8 +1,10 @@
-# Release Notes — v0.20.0 (2026-05-05, local)
+# Release Notes — v0.20.0 (2026-05-05)
 
 **Theme**: 新电脑 zero-config installer 成熟基线
 
-**Local baseline**: 863 passed, 4 skipped；以 `docs/superpowers/state/current-status.md` 的最新代码事实为准
+**Verified baseline**: 863 passed, 4 skipped；以 `docs/superpowers/state/current-status.md` 的最新代码事实为准
+**Remote**: `https://github.com/yellowpeachxgp/we-together-skill`
+**Tag**: `v0.20.0`
 **ADR 总数**: 73
 **不变式**: 28
 **Migrations**: 21
@@ -57,12 +59,18 @@ README、Quickstart、Getting Started、Codex host doc、Wiki usage 已把一键
 - `pytest`: 863 passed, 4 skipped
 - `release_strict_e2e.py --profile strict`: `ok: true`
 
+## 发布状态
+
+本次 GitHub 发布动作已完成：
+
+- `main` 已推送到 `yellowpeachxgp/we-together-skill`
+- `v0.20.0` tag 已指向发布提交
+- GitHub Release 使用本文档作为 release notes
+
 ## 仍未完成 / 外部依赖
 
 以下项仍依赖外部条件，当前不宣称已完成：
 
-- GitHub remote push
-- GitHub Release
 - TestPyPI / PyPI 正式发布
 - 外部真实用户机器上的人工验收
 

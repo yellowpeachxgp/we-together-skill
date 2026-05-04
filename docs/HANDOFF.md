@@ -2,7 +2,7 @@
 
 > **对象**：Codex（或任一继任 AI assistant）
 > **目标**：读完本文档 + [`docs/superpowers/state/current-status.md`](superpowers/state/current-status.md) 后 **5 分钟**内回到工作状态。
-> **当前版本**：**v0.20.0（local）** — zero-config installer 基线，目标是一键安装到新电脑可用。
+> **当前版本**：**v0.20.0** — zero-config installer 发布基线，目标是一键安装到新电脑可用。
 > **代码事实补丁（2026-04-29）**：当前代码自审为 **73 ADR / 28 条不变式 / 21 migrations / 84 services / 76 scripts**；28 条不变式全部有测试覆盖；本地已起步 **Phase 72：矛盾复核 / operator-gated unmerge**，并已把 **Codex native skill family** 扩展为 **7 个本地 skill**（router + `dev/runtime/ingest/world/simulation/release`）。WebUI 现已默认走 local skill bridge，浏览器不再默认持有 WebUI token。
 > **post-v0.19 local cockpit 补丁（2026-05-03）**：WebUI bridge 已扩展为本地 cockpit API，默认读取真实 graph / activity / world / branch review，并支持 WebUI 内 bootstrap、seed-demo、narration import、branch resolve；默认生产路径不静默注入 demo，demo 只在 `?demo=1` 或 `localStorage.we_together_demo_mode=1` 时启用。
 > **strict gate 补丁（2026-05-03）**：`.venv/bin/python scripts/release_strict_e2e.py --profile strict` 覆盖 CLI first-run、tenant isolation、fresh MCP stdio、WebUI curl、package verify、Codex skill family validate 与 focused pytest。Fresh MCP `snapshot_list` 已通过；长驻旧 MCP 进程若仍报 `no such column: scene_id`，重启 MCP 后复测。
@@ -27,7 +27,8 @@
 
 | 项 | 值 |
 |---|---|
-| git tag | `v0.20.0`（local） |
+| git tag | `v0.20.0` |
+| GitHub remote | `https://github.com/yellowpeachxgp/we-together-skill` |
 | pyproject version | `0.20.0` |
 | cli VERSION | `0.20.0` |
 | pytest 基线 | **863 passed + 4 skipped**，~39s 本机 |
@@ -323,7 +324,7 @@ we-together-skill/
 - narrative / planning / execution 闭环增强
 
 **方向 5 ★★★☆☆ — 外部发布**
-- GitHub Release / PyPI / 文档站点
+- PyPI / 文档站点
 - 真实试用 / case study
 - 发布流程真实演练
 

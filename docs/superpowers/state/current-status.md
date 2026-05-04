@@ -26,6 +26,7 @@
 - `scripts/install_codex_skill.py` 新增 `--configure-mcp` / `--config-path` / `--mcp-root` / `--python-bin` / `--force-mcp`，可在安装 skill family 时幂等写入 `~/.codex/config.toml`。
 - MCP 配置写入由 `codex_skill_support.upsert_codex_mcp_server_config()` 负责，使用 managed block；重复执行会替换同名托管 block，不会重复追加。
 - 零配置边界已写入 README / Quickstart / Getting Started / Codex host doc / Wiki usage：脚本要求系统已有 `python3 >= 3.11` 和 `git`，不会自动安装系统包管理器、Python 或 Codex 本体。
+- GitHub 发布入口已切到公开仓库 `https://github.com/yellowpeachxgp/we-together-skill`；`main` 与 `v0.20.0` tag 是本版远端发布基线，GitHub Release 使用 `docs/release_notes_v0.20.0.md`。
 
 ## 2026-04-29 文档 / WebUI local runtime 补丁
 

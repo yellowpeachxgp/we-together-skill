@@ -2,13 +2,14 @@
 
 本 CHANGELOG 记录 we-together-skill 的阶段性里程碑。
 
-## v0.20.0 — 2026-05-05 (local)
+## v0.20.0 — 2026-05-05
 
 - 新增 `scripts/install.sh` 作为新电脑一键安装入口：克隆/更新 repo、创建 `~/.we-together/venv`、安装 CLI、bootstrap `~/.we-together/data`、安装 Codex skill family、写入 Codex MCP server、执行安装后验收。
 - `scripts/install_codex_skill.py` 新增 `--configure-mcp` / `--config-path` / `--mcp-root` / `--python-bin` / `--force-mcp`，支持安装 skill family 时幂等注册 MCP。
 - `codex_skill_support.upsert_codex_mcp_server_config()` 使用 managed TOML block 管理 `~/.codex/config.toml`，重复执行不会重复追加 server block。
 - `scripts/release_prep.py` 新增 `git tag points at HEAD` 检查，避免 tag 存在但不代表当前发布提交的假阳性。
 - README、Quickstart、Getting Started、Codex host doc、Wiki usage 已把一键安装设为新用户主路径。
+- GitHub remote 已切到公开仓库 `yellowpeachxgp/we-together-skill`，`v0.20.0` tag 与 GitHub Release 作为本版发布入口。
 - 当前本地 pytest 基线：**863 passed, 4 skipped**。
 
 ## 2026-05-03 — final skill product / local cockpit hardening
