@@ -1,6 +1,6 @@
 # Quickstart
 
-> 适用于 we-together-skill v0.19.0。目标是在 5 分钟内跑起一个可对话的小社会图谱。
+> 适用于 we-together-skill v0.20.0。目标是在 5 分钟内完成一键安装，并跑起一个可对话的小社会图谱。
 
 ## 0. 环境
 
@@ -54,7 +54,7 @@ pip install -e .
 期望：
 
 ```text
-we-together 0.19.0
+we-together 0.20.0
 ```
 
 ## 3. 初始化 + demo 数据

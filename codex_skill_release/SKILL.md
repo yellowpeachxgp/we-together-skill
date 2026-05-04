@@ -3,7 +3,7 @@ name: we-together-release
 description: "Use when the user is explicitly asking about we-together release engineering, packaging, or publication readiness: package_skill, verify_skill_package, release_prep, release notes, CHANGELOG, or host smoke evidence. 中文强触发示例：we-together release、we-together 打包、we-together 发布说明、we-together CHANGELOG、we-together 自检。Do not use for generic graph/runtime questions, imports, or unrelated publishing workflows."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.19.0"
+version: "0.20.0"
 ---
 
 > **语言**：用户说中文时，全程用中文。

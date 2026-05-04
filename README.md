@@ -14,7 +14,7 @@
 
 ## 当前状态
 
-当前本地基线是 `we-together 0.19.0`。项目已经具备可运行的 Skill 产品主路径：
+当前本地基线是 `we-together 0.20.0`。项目已经具备可运行的 Skill 产品主路径：
 
 - CLI：bootstrap、seed/import、chat、dialogue-turn、snapshot、graph-summary、maintenance、simulation。
 - MCP：self-describe、invariants、graph summary、scene、snapshot、import、run-turn 等本地验证工具。

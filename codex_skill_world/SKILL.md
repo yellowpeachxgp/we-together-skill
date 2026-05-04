@@ -3,7 +3,7 @@ name: we-together-world
 description: "Use when the user is explicitly asking about we-together tenant/world runtime or world-model operations: tenant state, active world, world objects/places/projects, world CLI, or world isolation boundaries. 中文强触发示例：we-together tenant 状态、we-together world 摘要、we-together 世界对象、we-together place/project。Do not use for generic project status, generic imports, or unrelated worldbuilding."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.19.0"
+version: "0.20.0"
 ---
 
 > **语言**：用户说中文时，全程用中文。

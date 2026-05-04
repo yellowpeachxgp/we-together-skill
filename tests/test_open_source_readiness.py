@@ -103,6 +103,7 @@ def test_release_prep_points_to_current_strict_gate_and_open_source_checks():
     assert "LICENSE file" in check_names
     assert "LICENSE tracked" in check_names
     assert "pyproject.toml package name" in check_names
+    assert "git tag points at HEAD" in check_names
 
 
 def test_license_file_exists_for_declared_mit_license():
@@ -177,12 +178,16 @@ def test_release_notes_distinguish_historical_entries_from_current_code_truth():
     changelog = (REPO_ROOT / "docs" / "CHANGELOG.md").read_text(encoding="utf-8")
     v018 = (REPO_ROOT / "docs" / "release_notes_v0.18.0.md").read_text(encoding="utf-8")
     v019 = (REPO_ROOT / "docs" / "release_notes_v0.19.0.md").read_text(encoding="utf-8")
+    v020 = (REPO_ROOT / "docs" / "release_notes_v0.20.0.md").read_text(encoding="utf-8")
 
     assert "## v0.18.0" in changelog
+    assert "## v0.20.0" in changelog
     assert "当前代码注册表为 28 条不变式" in v018
     assert "#29/#30" in v018 and "治理检查" in v018
     assert "docs/superpowers/state/current-status.md" in v019
     assert "853 passed, 4 skipped" in v019
+    assert "zero-config installer" in v020
+    assert "863 passed, 4 skipped" in v020
 
 
 def test_readme_is_current_product_entrypoint_not_archived_phase_log():

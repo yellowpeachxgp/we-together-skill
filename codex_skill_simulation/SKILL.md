@@ -3,7 +3,7 @@ name: we-together-simulation
 description: "Use when the user is explicitly asking about we-together simulation, projection, or long-run evolution workflows: what-if, simulate_week/year, dream_cycle, tick replay, or future-state analysis. 中文强触发示例：we-together 模拟、we-together what-if、we-together simulate_year、we-together dream_cycle。Do not use for generic project status, plain graph summary, or unrelated forecasting tasks."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.19.0"
+version: "0.20.0"
 ---
 
 > **语言**：用户说中文时，全程用中文。

@@ -3,7 +3,7 @@
 日期：2026-04-25
 
 > 代码事实快照：
-> - 本地测试基线：**853 passed, 4 skipped**
+> - 本地测试基线：**863 passed, 4 skipped**
 > - ADR：**73**
 > - 不变式：**28**
 > - Migrations：**21**
@@ -18,7 +18,7 @@
 - WebUI 默认生产路径现在是 honest local runtime：local bridge 不可用或本地库为空时展示离线/空状态，不静默注入 demo graph。视觉开发 demo 需显式使用 URL `?demo=1` 或 `localStorage.we_together_demo_mode=1`。
 - WebUI graph cockpit 已覆盖 person / relation / memory / group / scene / state / object / place / project；world cockpit 已覆盖 participants / objects / places / projects / agent_drives / autonomous_actions。
 - Operator Review 的 resolve 操作已支持 operator note，并把 note 作为 branch resolve `reason` 写入 patch payload。
-- 最新 self-audit 代码事实：`version=0.19.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
+- 最新 self-audit 代码事实：`version=0.20.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
 
 ## 2026-05-05 zero-config install 补丁
 
@@ -30,11 +30,11 @@
 ## 2026-04-29 文档 / WebUI local runtime 补丁
 
 - `docs/wiki/` 已新增为当前稳定 Wiki 入口，覆盖架构、使用方法、能力边界和交互流程。
-- `docs/index.md`、`docs/quickstart.md`、`docs/getting-started.md`、`docs/architecture/overview.md`、`docs/FAQ.md` 已同步到 v0.19.0 事实基线。
+- `docs/index.md`、`docs/quickstart.md`、`docs/getting-started.md`、`docs/architecture/overview.md`、`docs/FAQ.md` 已同步到 v0.20.0 事实基线。
 - WebUI 默认通道已改为 local skill bridge：浏览器无 WebUI token 时通过 `/api/chat/run-turn` 调用本地 `scripts/webui_host.py`，bridge 再调用 `chat_service.run_turn()`。
 - WebUI no-token 模式现在会从本地 `/api/scenes` 读取 active scenes；当前 root 没有 scene 时提示先 bootstrap + seed-demo 或导入材料，不再静默发送静态 demo scene id。
 - `scripts/webui_host.py` 暴露只读 `/api/scenes` 和 `/api/summary`；图谱写入仍集中在 `chat_service.run_turn()`。
-- 最新 self-audit 代码事实：`version=0.19.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
+- 最新 self-audit 代码事实：`version=0.20.0`，`ADR=73`，`invariants=28/28 covered`，`migrations=21`，`services=84`，`scripts=76`。
 
 ## 2026-05-03 post-v0.19 local cockpit 推进
 
@@ -59,7 +59,7 @@
 - `unmerge_gate.py --tenant-id` 已有回归测试；非 active target 会走明确失败出口
 - `resolve_local_branch` 对带 `effect_patches` 的 candidate 现在先跑子 effect，再回写 parent branch；子 effect 失败时 branch 保持 `open`
 - `unmerge_gate_service` 现在会把输入 `confidence` clamp 到 `[0,1]`，避免异常值把 operator gate 的候选排序带偏
-- `package_skill.py pack` 不传版本参数时，现已自动推导当前 `skill_version=0.19.0` 与 `schema_version=0021`
+- `package_skill.py pack` 不传版本参数时，现已自动推导当前 `skill_version=0.20.0` 与 `schema_version=0021`
 - `we_together.__version__` 现已与 CLI `VERSION` 对齐
 - 本机已新增 `codex_skill/` 原生技能包，以及 `scripts/install_codex_skill.py` / `scripts/update_codex_skill.py` / `scripts/validate_codex_skill.py` / `scripts/capture_codex_skill_evidence.py`
 - 本机已把 Codex native skill 扩展为 7 个技能：`we-together`（router）/ `we-together-dev` / `we-together-runtime` / `we-together-ingest` / `we-together-world` / `we-together-simulation` / `we-together-release`

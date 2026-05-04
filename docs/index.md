@@ -6,7 +6,7 @@
 
 | 项 | 当前值 |
 |---|---|
-| 版本 | `0.19.0` |
+| 版本 | `0.20.0` |
 | ADR | 73 |
 | 不变式 | 28 条，28 条有测试覆盖 |
 | Migrations | 21 |
@@ -70,6 +70,7 @@ pip install -e .
 
 - [当前状态](superpowers/state/current-status.md)
 - [交接文档](HANDOFF.md)
+- [v0.20 release notes](release_notes_v0.20.0.md)
 - [v0.19 release notes](release_notes_v0.19.0.md)
 - [2026-05-03 final/local cockpit hardening](CHANGELOG.md#2026-05-03--final-skill-product--local-cockpit-hardening)
 - [变更历史](CHANGELOG.md)

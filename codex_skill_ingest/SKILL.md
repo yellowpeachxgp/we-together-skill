@@ -3,7 +3,7 @@ name: we-together-ingest
 description: "Use when the user is explicitly asking to bootstrap we-together data roots or import material into the we-together project: bootstrap, narration import, text import, email import, file import, directory import, or auto import. 中文强触发示例：we-together 导入材料、we-together bootstrap、we-together 导入口述文本。Do not use for graph summary, invariant queries, or continuing engineering phases."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.19.0"
+version: "0.20.0"
 ---
 
 > **语言**：用户说中文时，全程用中文。

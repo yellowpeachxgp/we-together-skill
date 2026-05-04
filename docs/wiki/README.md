@@ -6,7 +6,7 @@
 
 | 项 | 当前事实 |
 |---|---|
-| 版本 | `we-together 0.19.0` |
+| 版本 | `we-together 0.20.0` |
 | 定位 | Skill-first 的社会 + 世界图谱运行时 |
 | 存储 | 本地 SQLite + 文件系统目录，默认 `<root>/db/main.sqlite3` |
 | 多租户 | `default` 使用 `<root>/db/main.sqlite3`，其他 tenant 使用 `<root>/tenants/<tenant_id>/db/main.sqlite3` |

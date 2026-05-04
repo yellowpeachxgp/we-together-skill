@@ -27,7 +27,7 @@ import runpy
 import sys
 from pathlib import Path
 
-VERSION = "0.19.0"
+VERSION = "0.20.0"
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS_DIR = ROOT / "scripts"

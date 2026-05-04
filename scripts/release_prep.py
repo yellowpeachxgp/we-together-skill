@@ -2,6 +2,7 @@
 
 检查：
 - tag 存在
+- tag 指向当前 HEAD
 - pyproject/cli VERSION 一致
 - wheel 能 build
 - 关键 ADR/CHANGELOG/release_notes 存在
@@ -153,6 +154,16 @@ def run_checks(version: str, repo_root: Path) -> dict:
         ))
     except Exception as exc:
         checks.append(_check("git tag exists", False, str(exc)))
+    try:
+        tag_commit = _git_output(repo_root, ["rev-list", "-n", "1", f"v{version}"])
+        head_commit = _git_output(repo_root, ["rev-parse", "HEAD"])
+        checks.append(_check(
+            "git tag points at HEAD",
+            tag_commit == head_commit,
+            f"tag={tag_commit[:12]} head={head_commit[:12]}",
+        ))
+    except Exception as exc:
+        checks.append(_check("git tag points at HEAD", False, str(exc)))
 
     # build artifacts
     wheel_path = repo_root / "dist" / f"we_together-{version}-py3-none-any.whl"

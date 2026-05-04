@@ -3,7 +3,7 @@ name: we-together
 description: "Use when the user is explicitly asking about the we-together project or its runtime: repository status, HANDOFF/current-status, ADRs, invariants, graph summary, tenant/world, simulation, release prep, imports, or continuing engineering phases in this repository. 中文强触发示例：we-together 当前状态、we-together 交接文档、we-together 不变式、we-together 图谱摘要、we-together world、we-together 模拟、we-together release。Do not use for generic social graph theory, bare generic phrases like 当前状态/ADR/scene/memory, or unrelated repositories."
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
-version: "0.19.0"
+version: "0.20.0"
 ---
 
 > **语言**：优先跟随用户语言。用户说中文，就全程用中文。

@@ -4,7 +4,7 @@
   {
     "format_version": 1,
     "name": "we-together",
-    "skill_version": "0.19.0",
+    "skill_version": "0.20.0",
     "schema_version": "0021",
     "created_at": "...",
     "files": ["SKILL.md", "db/migrations/*", ...]
